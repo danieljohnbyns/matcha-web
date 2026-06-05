@@ -1,8 +1,11 @@
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
+import { ConfigProvider } from 'antd'
 
 import appCss from '../styles.css?url'
+import { matchaTheme } from '#/config/theme'
+import { Navbar, Footer } from '#/components'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -15,7 +18,7 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'TanStack Start Starter',
+        title: 'Matcha — Your Services. Your Community.',
       },
     ],
     links: [
@@ -35,7 +38,13 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        {children}
+        <ConfigProvider theme={matchaTheme}>
+          <div className="min-h-screen flex flex-col bg-warm-white">
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+        </ConfigProvider>
         <TanStackDevtools
           config={{
             position: 'bottom-right',

@@ -36,7 +36,7 @@ Matcha is a **landing page** for a mobile social media platform designed for **s
 
 | Role           | Color           | Hex       | Usage                                    |
 | -------------- | --------------- | --------- | ---------------------------------------- |
-| Primary        | Classic Matcha  | `#7CB692` | CTAs, links, highlights, active states   |
+| Primary        | Classic Matcha  | `#004450` | CTAs, links, highlights, active states   |
 | Background     | Warm White      | `#FAF9F6` | Page background                          |
 | Surface        | White           | `#FFFFFF` | Cards, sections, elevated surfaces       |
 | Text Primary   | Charcoal        | `#2D2D2D` | Headings, body text                      |
@@ -138,7 +138,7 @@ Sections in order:
 // antd theme override
 {
   token: {
-    colorPrimary: '#7CB692',
+    colorPrimary: '#004450',
     colorBgBase: '#FAF9F6',
     colorTextBase: '#2D2D2D',
     borderRadius: 8,
