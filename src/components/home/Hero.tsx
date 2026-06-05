@@ -4,15 +4,16 @@ import { Link } from '@tanstack/react-router';
 export const Hero = () => {
 	return (
 		<section className='py-24 md:py-32 bg-warm-white'>
-			<div className='max-w-[1200px] mx-auto px-6 text-center'>
+			<div className='max-w-1200px mx-auto px-6 text-center'>
 				<h1 className='text-4xl md:text-6xl font-bold text-charcoal leading-tight'>
-          Your Services.
+					Your Services.
 					<br />
-          Your Community.
+					Your Community.
 				</h1>
 				<p className='text-warm-gray text-lg md:text-xl mt-6 max-w-2xl mx-auto'>
-          Matcha is the social platform built for service providers to showcase
-          their work, connect with clients, and grow their business.
+					Matcha is the social platform built for service providers to
+					showcase their work, connect with clients, and grow their
+					business.
 				</p>
 				<div className='mt-10'>
 					<Link to='/download'>
@@ -21,7 +22,7 @@ export const Hero = () => {
 							size='large'
 							className='h-auto px-8 py-3 text-base font-semibold'
 						>
-              Download the App
+							Download the App
 						</Button>
 					</Link>
 				</div>

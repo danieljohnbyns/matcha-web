@@ -15,9 +15,12 @@ export const Navbar = () => {
 
 	return (
 		<nav className='sticky top-0 z-50 bg-white border-b border-border'>
-			<div className='max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between'>
-				<Link to='/' className='text-2xl font-bold text-matcha no-underline'>
-          Matcha
+			<div className='max-w-1200px mx-auto px-6 h-16 flex items-center justify-between'>
+				<Link
+					to='/'
+					className='text-2xl font-bold text-matcha no-underline'
+				>
+					Matcha
 				</Link>
 
 				{/* Desktop nav */}
@@ -56,7 +59,9 @@ export const Navbar = () => {
 							key={link.to}
 							to={link.to}
 							className={`block py-3 no-underline text-base font-medium ${
-								location.pathname === link.to ? 'text-matcha' : 'text-warm-gray'
+								location.pathname === link.to
+									? 'text-matcha'
+									: 'text-warm-gray'
 							}`}
 							onClick={() => setMobileOpen(false)}
 						>

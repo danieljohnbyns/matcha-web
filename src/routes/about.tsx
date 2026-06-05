@@ -39,7 +39,7 @@ const About = () => {
 		<div>
 			{/* Mission */}
 			<section className='py-24 bg-warm-white'>
-				<div className='max-w-[800px] mx-auto px-6 text-center'>
+				<div className='max-w-800px mx-auto px-6 text-center'>
 					<h1 className='text-4xl md:text-5xl font-bold text-charcoal'>
 						About Matcha
 					</h1>
@@ -61,7 +61,7 @@ const About = () => {
 
 			{/* Values */}
 			<section className='py-24 bg-white'>
-				<div className='max-w-[1200px] mx-auto px-6'>
+				<div className='max-w-1200px mx-auto px-6'>
 					<h2 className='text-3xl md:text-4xl font-bold text-charcoal text-center mb-16'>
 						Our Values
 					</h2>
@@ -87,7 +87,7 @@ const About = () => {
 
 			{/* Team */}
 			<section className='py-24 bg-warm-white'>
-				<div className='max-w-[1200px] mx-auto px-6'>
+				<div className='max-w-1200px mx-auto px-6'>
 					<h2 className='text-3xl md:text-4xl font-bold text-charcoal text-center mb-16'>
 						Our Team
 					</h2>

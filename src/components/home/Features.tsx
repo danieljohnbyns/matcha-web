@@ -33,7 +33,7 @@ const features = [
 export const Features = () => {
 	return (
 		<section className='py-24 bg-white'>
-			<div className='max-w-[1200px] mx-auto px-6'>
+			<div className='max-w-1200px mx-auto px-6'>
 				<SectionHeading
 					title='Everything You Need'
 					subtitle='Powerful tools designed specifically for service providers to manage and grow their business.'
@@ -46,8 +46,12 @@ export const Features = () => {
 							className='text-center bg-warm-white hover:shadow-md transition-shadow'
 						>
 							<div className='mb-4'>{feature.icon}</div>
-							<h3 className='text-lg font-semibold text-charcoal mb-2'>{feature.title}</h3>
-							<p className='text-warm-gray text-sm'>{feature.description}</p>
+							<h3 className='text-lg font-semibold text-charcoal mb-2'>
+								{feature.title}
+							</h3>
+							<p className='text-warm-gray text-sm'>
+								{feature.description}
+							</p>
 						</Card>
 					))}
 				</div>

@@ -37,7 +37,7 @@ const faqs = [
 export const FAQ = () => {
 	return (
 		<section className='py-24 bg-warm-white'>
-			<div className='max-w-[800px] mx-auto px-6'>
+			<div className='max-w-800px mx-auto px-6'>
 				<SectionHeading
 					title='Frequently Asked Questions'
 					subtitle='Everything you need to know about Matcha.'
@@ -48,8 +48,14 @@ export const FAQ = () => {
 					className='bg-transparent'
 					items={faqs.map((faq) => ({
 						key: faq.key,
-						label: <span className='text-base font-medium text-charcoal py-2'>{faq.label}</span>,
-						children: <p className='text-warm-gray'>{faq.children}</p>
+						label: (
+							<span className='text-base font-medium text-charcoal py-2'>
+								{faq.label}
+							</span>
+						),
+						children: (
+							<p className='text-warm-gray'>{faq.children}</p>
+						)
 					}))}
 				/>
 			</div>

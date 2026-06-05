@@ -10,7 +10,7 @@ const screens = [
 export const Screenshots = () => {
 	return (
 		<section className='py-24 bg-white'>
-			<div className='max-w-[1200px] mx-auto px-6'>
+			<div className='max-w-1200px mx-auto px-6'>
 				<SectionHeading
 					title='See Matcha in Action'
 					subtitle='A glimpse at the experience waiting for you.'
@@ -21,7 +21,9 @@ export const Screenshots = () => {
 							key={screen.label}
 							className={`${screen.bg} rounded-2xl aspect-[9/16] flex items-center justify-center`}
 						>
-							<span className='text-warm-gray text-sm font-medium'>{screen.label}</span>
+							<span className='text-warm-gray text-sm font-medium'>
+								{screen.label}
+							</span>
 						</div>
 					))}
 				</div>

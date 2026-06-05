@@ -12,7 +12,7 @@ const Download = () => {
 
 	return (
 		<section className='py-24 bg-warm-white min-h-[80vh] flex items-center'>
-			<div className='max-w-[600px] mx-auto px-6 text-center'>
+			<div className='max-w-600px mx-auto px-6 text-center'>
 				<h1 className='text-4xl md:text-5xl font-bold text-charcoal'>
 					Get Matcha
 				</h1>
@@ -71,14 +71,14 @@ const Download = () => {
               <Input
                 placeholder="you@example.com"
                 size="large"
-                className="max-w-[360px] mx-auto"
+                className="max-w-360px mx-auto"
               />
             </Form.Item>
             <Button
               type="primary"
               htmlType="submit"
               size="large"
-              className="bg-matcha hover:bg-matcha-dark w-full sm:w-auto max-w-[360px]"
+              className="bg-matcha hover:bg-matcha-dark w-full sm:w-auto max-w-360px"
             >
               Notify Me
             </Button>
