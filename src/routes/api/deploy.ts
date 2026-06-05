@@ -25,8 +25,14 @@ export const Route = createFileRoute('/api/deploy')({
           // bun ci (clean install)
           execSync('bun ci', { cwd: rootDir, stdio: 'pipe' })
 
+          // build
+          execSync('bun run build', { cwd: rootDir, stdio: 'pipe' })
+
           // Restart the production server via PM2
-          execSync('pm2 restart matcha-web', { cwd: rootDir, stdio: 'pipe' })
+          execSync('bunx pm2 restart matcha-web', {
+            cwd: rootDir,
+            stdio: 'pipe',
+          })
 
           return Response.json({
             success: true,
