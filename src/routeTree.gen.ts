@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as DownloadRouteImport } from './routes/download'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiDeployRouteImport } from './routes/api/deploy'
 
 const DownloadRoute = DownloadRouteImport.update({
   id: '/download',
@@ -28,35 +29,44 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiDeployRoute = ApiDeployRouteImport.update({
+  id: '/api/deploy',
+  path: '/api/deploy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/download': typeof DownloadRoute
+  '/api/deploy': typeof ApiDeployRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/download': typeof DownloadRoute
+  '/api/deploy': typeof ApiDeployRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/download': typeof DownloadRoute
+  '/api/deploy': typeof ApiDeployRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/download'
+  fullPaths: '/' | '/about' | '/download' | '/api/deploy'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/download'
-  id: '__root__' | '/' | '/about' | '/download'
+  to: '/' | '/about' | '/download' | '/api/deploy'
+  id: '__root__' | '/' | '/about' | '/download' | '/api/deploy'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   DownloadRoute: typeof DownloadRoute
+  ApiDeployRoute: typeof ApiDeployRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/deploy': {
+      id: '/api/deploy'
+      path: '/api/deploy'
+      fullPath: '/api/deploy'
+      preLoaderRoute: typeof ApiDeployRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   DownloadRoute: DownloadRoute,
+  ApiDeployRoute: ApiDeployRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
