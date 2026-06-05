@@ -1,7 +1,7 @@
 import { useState } from 'react'
+import { Button } from 'antd'
 import { Link, useLocation } from '@tanstack/react-router'
 import { MenuOutlined, CloseOutlined } from '@ant-design/icons'
-import { Button } from 'antd'
 
 const navLinks = [
   { to: '/', label: 'Home' },
@@ -39,10 +39,11 @@ export function Navbar() {
 
         {/* Mobile toggle */}
         <Button
-          type="text"
-          className="md:hidden"
           icon={mobileOpen ? <CloseOutlined /> : <MenuOutlined />}
+          type="text"
+          className="md:hidden p-2 text-charcoal"
           onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle menu"
         />
       </div>
 
@@ -54,9 +55,7 @@ export function Navbar() {
               key={link.to}
               to={link.to}
               className={`block py-3 no-underline text-base font-medium ${
-                location.pathname === link.to
-                  ? 'text-matcha'
-                  : 'text-warm-gray'
+                location.pathname === link.to ? 'text-matcha' : 'text-warm-gray'
               }`}
               onClick={() => setMobileOpen(false)}
             >
