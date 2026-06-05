@@ -1,3 +1,11 @@
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+node_modules
+.agents/**
+public/**
+dist/**
+supabase/**
+src/.cache/**
+skills-lock.json
+routeThree.gen.ts
