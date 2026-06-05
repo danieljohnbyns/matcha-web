@@ -13,7 +13,7 @@
     "lint": "eslint",
     "format": "prettier --write . && eslint --fix",
     "check": "prettier --check .",
-    "deploy": "git reset --hard && git pull && bun ci && bun run build && bunx pm2 restart matcha-web"
+    "deploy": "git reset --hard && git pull && bun ci && bun run build && (bunx pm2 restart matcha-web || bunx pm2 start 'bun run start' --name matcha-web)"
   },
   "dependencies": {
     "@ant-design/icons": "^6.2.5",
