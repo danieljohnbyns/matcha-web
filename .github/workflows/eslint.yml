@@ -1,0 +1,48 @@
+name: Lint with ESLint
+on:
+    push:
+        paths:
+            - '**/*.ts'
+            - '**/*.tsx'
+    pull_request:
+        paths:
+            - '**/*.ts'
+            - '**/*.tsx'
+    workflow_dispatch:
+        inputs:
+            fix:
+                description: 'Run with --fix'
+                required: false
+                type: boolean
+                default: false
+
+permissions:
+    contents: write
+
+jobs:
+    eslint:
+        name: ESLint
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+                  persist-credentials: true
+            - name: Setup Bun
+              uses: oven-sh/setup-bun@v2
+            - name: Install dependencies
+              run: bun install
+            - name: Run ESLint
+              run: bunx eslint . --ext .ts --max-warnings 0 ${{ github.event.inputs.fix == 'true' && '--fix' || '' }}
+            - name: Commit fixed code
+              if: ${{ github.event.inputs.fix == 'true' }}
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "github-actions[bot]@users.noreply.github.com"
+                  git add -A
+                  if [ -n "$(git status --porcelain)" ]; then
+                    git commit -m "ci(eslint): apply --fix via workflow" || echo "No commit needed"
+                    git push
+                  else
+                    echo "No changes to commit"
+                  fi
