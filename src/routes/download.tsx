@@ -53,8 +53,12 @@ function Download() {
 
         {/* Email signup */}
         {/* <div className="mt-12">
-          <h2 className="text-xl font-semibold text-charcoal mb-2">Get notified about updates</h2>
-          <p className="text-warm-gray text-sm mb-6">Be the first to know about new features and launches.</p>
+          <h2 className="text-xl font-semibold text-charcoal mb-2">
+            Get notified about updates
+          </h2>
+          <p className="text-warm-gray text-sm mb-6">
+            Be the first to know about new features and launches.
+          </p>
           <Form form={form} onFinish={handleSubmit} layout="vertical">
             <Form.Item
               name="email"
