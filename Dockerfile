@@ -16,9 +16,8 @@ RUN bun run build
 FROM oven/bun:latest AS runner
 WORKDIR /app
 
-# Create a non-root user for security
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 bunjs
+# Create a non-root user for security (Alpine-compatible)
+RUN addgroup -S bunjs && adduser -S bunjs -G bunjs
 USER bunjs
 
 # Copy built assets and production node_modules
