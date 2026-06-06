@@ -41,7 +41,7 @@ Bun.serve({
 				cwd: process.cwd()
 			});
 			return new Response('Deployment triggered', { status: 202 });
-		}
+		};
 
 		return new Response('Ignored event', { status: 200 });
 	}
