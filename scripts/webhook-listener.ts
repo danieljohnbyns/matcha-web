@@ -29,15 +29,21 @@ Bun.serve({
 			return new Response('Method not allowed', { status: 405 });
 
 		const body = await request.text();
-		if (!(await verifySignature(request, body)))
+		if (!verifySignature(request, body))
 			return new Response('Invalid signature', { status: 401 });
 
-		// Trigger deploy asynchronously
-		spawn(['bun', 'run', 'deploy'], {
-			cwd: process.cwd()
-		});
+		const payload = JSON.parse(body);
 
-		return new Response('Deployment triggered', { status: 202 });
+		// Only trigger deploy if it's a push to the production branch
+		if (payload.ref === 'refs/heads/production') {
+			// Trigger deploy asynchronously
+			spawn(['bun', 'run', 'deploy'], {
+				cwd: process.cwd()
+			});
+			return new Response('Deployment triggered', { status: 202 });
+		}
+
+		return new Response('Ignored event', { status: 200 });
 	}
 });
 console.log('Webhook listener running on port 9000');
