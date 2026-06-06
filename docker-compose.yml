@@ -1,0 +1,18 @@
+services:
+  web:
+    build: .
+    restart: always
+    ports:
+      - "4173:4173"
+    environment:
+      - NODE_ENV=production
+    # Assuming preview runs on 4173
+
+  webhook:
+    build: .
+    restart: always
+    ports:
+      - "9000:9000"
+    environment:
+      - GITHUB_WEBHOOK_SECRET=${GITHUB_WEBHOOK_SECRET}
+    command: ["bun", "scripts/webhook-listener.ts"]
