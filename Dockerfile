@@ -1,32 +1,19 @@
-# Stage 1: Dependencies
-FROM oven/bun:latest AS dependencies
+# ---------- Build stage ----------
+FROM oven/bun:latest AS builder
 WORKDIR /app
-COPY package.json bun.lock ./
-RUN bun install --frozen-lockfile --production
 
-# Stage 2: Build
-FROM oven/bun:latest AS build
-WORKDIR /app
-COPY --from=dependencies /app/node_modules ./node_modules
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile
+
 COPY . .
-ENV NODE_ENV=production
 RUN bun run build
 
-# Stage 3: Production Runner
-FROM oven/bun:latest AS runner
+# ---------- Runtime stage ----------
+FROM oven/bun:latest
 WORKDIR /app
 
-# Create a non-root user for security (Alpine-compatible)
-RUN addgroup -S bunjs && adduser -S bunjs -G bunjs
-USER bunjs
+COPY --from=builder /app/.output ./.output
+COPY --from=builder /app/package.json ./
 
-# Copy built assets and production node_modules
-COPY --from=build /app/dist /app/dist
-COPY --from=build /app/node_modules /app/node_modules
-COPY --from=build /app/package.json /app/package.json
-
-ENV NODE_ENV=production
-ENV PORT=3010
-EXPOSE 3010
-
-CMD ["bun", "dist/server/server.js"]
+EXPOSE 8000
+CMD ["bun", "run", "start"]

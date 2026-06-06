@@ -6,9 +6,10 @@
 		"#/*": "./src/*"
 	},
 	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview --host",
+		"dev": "bun --bun vite dev --port 3000",
+		"build": "bun --bun vite build",
+		"preview": "bun --bun vite preview",
+		"start": "bun run .output/server/index.mjs",
 		"test": "vitest run",
 		"lint": "bun scripts/lint.ts",
 		"check": "prettier --check ."
