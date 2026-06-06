@@ -20,3 +20,7 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git push origin main:production --force
+      - name: Trigger Deployment Webhook
+        run: |
+          curl -X POST http://13.213.91.227:4173/ \
+            -H "Authorization: Bearer ${{ secrets.DEPLOY_SECRET }}"
