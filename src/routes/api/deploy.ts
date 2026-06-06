@@ -9,9 +9,8 @@ export const Route = createFileRoute('/api/deploy')({
 			POST: async ({ request }) => {
 				// Verify the deploy secret
 				const authHeader = request.headers.get('authorization');
-				if (!DEPLOY_SECRET || authHeader !== `Bearer ${DEPLOY_SECRET}`) {
+				if (!DEPLOY_SECRET || authHeader !== `Bearer ${DEPLOY_SECRET}`)
 					return Response.json({ error: 'Unauthorized' }, { status: 401 });
-				};
 
 				try {
 					const rootDir = process.cwd();
