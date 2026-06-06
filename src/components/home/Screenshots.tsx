@@ -1,3 +1,4 @@
+import React from 'react';
 import { SectionHeading } from './SectionHeading';
 
 const screens = [
@@ -7,7 +8,7 @@ const screens = [
 	{ label: 'Bookings', bg: 'bg-matcha-light' }
 ];
 
-export const Screenshots = () => {
+export const Screenshots = (): React.JSX.Element => {
 	return (
 		<section className='py-24 bg-white'>
 			<div className='max-w-1200px mx-auto px-6'>

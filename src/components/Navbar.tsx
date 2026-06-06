@@ -9,7 +9,7 @@ const navLinks = [
 	{ to: '/download', label: 'Download' }
 ];
 
-export const Navbar = () => {
+export const Navbar = (): React.JSX.Element => {
 	const [mobileOpen, setMobileOpen] = useState(false);
 	const location = useLocation();
 

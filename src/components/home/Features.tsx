@@ -34,7 +34,7 @@ const features = [
 	}
 ];
 
-export const Features = () => {
+export const Features = (): React.JSX.Element => {
 	return (
 		<section className='py-24 bg-white'>
 			<div className='max-w-1200px mx-auto px-6'>

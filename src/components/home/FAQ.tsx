@@ -18,7 +18,7 @@ const faqs = [
 		key: '3',
 		label: 'How do I get started?',
 		children:
-			"Download the app, create your profile, add your services and availability, and you're ready to connect with clients."
+			'Download the app, create your profile, add your services and availability, and you\'re ready to connect with clients.'
 	},
 	{
 		key: '4',
@@ -34,7 +34,7 @@ const faqs = [
 	}
 ];
 
-export const FAQ = () => {
+export const FAQ = (): React.JSX.Element => {
 	return (
 		<section className='py-24 bg-warm-white'>
 			<div className='max-w-800px mx-auto px-6'>

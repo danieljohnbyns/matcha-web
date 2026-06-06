@@ -1,16 +1,14 @@
 import { createRouter as createTanStackRouter } from '@tanstack/react-router';
 import { routeTree } from './routeTree.gen';
 
-export const getRouter = () => {
-	const router = createTanStackRouter({
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const getRouter = () =>
+	createTanStackRouter({
 		routeTree,
 		scrollRestoration: true,
 		defaultPreload: 'intent',
 		defaultPreloadStaleTime: 0
 	});
-
-	return router;
-};
 
 declare module '@tanstack/react-router' {
 	interface Register {

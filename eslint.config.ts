@@ -52,7 +52,7 @@ const semicolonRule: Rule.RuleModule = {
 
 				if (lastToken && lastToken.value === '}')
 					reportMissingSemicolon(node, lastToken);
-			}
+			};
 
 			// For IfStatements, also check the else block (alternate)
 			if (node.type === 'IfStatement' && node.alternate) {
@@ -70,8 +70,8 @@ const semicolonRule: Rule.RuleModule = {
 							alternate as unknown as Rule.Node,
 							lastToken
 						);
-				}
-			}
+				};
+			};
 		};
 
 		const checkTryStatement = (node: Rule.Node) => {
@@ -95,7 +95,7 @@ const semicolonRule: Rule.RuleModule = {
 
 				if (lastToken && lastToken.value === '}')
 					reportMissingSemicolon(node, lastToken);
-			}
+			};
 		};
 
 		const checkMethodDefinition = (node: Rule.Node) => {
@@ -108,7 +108,7 @@ const semicolonRule: Rule.RuleModule = {
 
 				if (lastToken && lastToken.value === '}')
 					reportMissingSemicolon(node, lastToken);
-			}
+			};
 		};
 
 		const checkClassDeclaration = (node: Rule.Node) => {
@@ -121,7 +121,7 @@ const semicolonRule: Rule.RuleModule = {
 
 				if (lastToken && lastToken.value === '}')
 					reportMissingSemicolon(node, lastToken);
-			}
+			};
 		};
 
 		const checkWithStatement = (node: Rule.Node) => {
@@ -133,7 +133,7 @@ const semicolonRule: Rule.RuleModule = {
 
 				if (lastToken && lastToken.value === '}')
 					reportMissingSemicolon(node, lastToken);
-			}
+			};
 		};
 
 		const checkArrowFunctionExpression = (node: Rule.Node) => {
@@ -162,7 +162,7 @@ const semicolonRule: Rule.RuleModule = {
 
 				if (lastToken && lastToken.value === '}')
 					reportMissingSemicolon(node, lastToken);
-			}
+			};
 		};
 
 		const checkFunctionExpression = (node: Rule.Node) => {
@@ -188,7 +188,7 @@ const semicolonRule: Rule.RuleModule = {
 
 				if (lastToken && lastToken.value === '}')
 					reportMissingSemicolon(node, lastToken);
-			}
+			};
 		};
 
 		return {
@@ -287,7 +287,7 @@ const avoidForEachRule: Rule.RuleModule = {
 							node,
 							messageId: 'avoidForEach'
 						});
-				}
+				};
 			}
 		};
 	}

@@ -24,7 +24,7 @@ await new Promise(async (resolve) => {
 	for await (const chunk of proc.stdout) {
 		const text = new TextDecoder().decode(chunk);
 		process.stdout.write(text);
-	}
+	};
 
 	await proc.exited;
 	if (proc.exitCode === 0) {
@@ -34,5 +34,5 @@ await new Promise(async (resolve) => {
 		console.error('ESLint found issues.');
 		resolve(null);
 		// reject(new Error(`Process exited with code ${proc.exitCode}`));
-	}
+	};
 });

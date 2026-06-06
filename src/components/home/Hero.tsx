@@ -1,7 +1,8 @@
+import React from 'react';
 import { Button } from 'antd';
 import { Link } from '@tanstack/react-router';
 
-export const Hero = () => {
+export const Hero = (): React.JSX.Element => {
 	return (
 		<section className='py-24 md:py-32 bg-warm-white'>
 			<div className='max-w-1200px mx-auto px-6 text-center'>

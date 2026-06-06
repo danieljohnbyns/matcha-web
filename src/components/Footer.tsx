@@ -1,6 +1,7 @@
+import React from 'react';
 import { Link } from '@tanstack/react-router';
 
-export const Footer = () => {
+export const Footer = (): React.JSX.Element => {
 	return (
 		<footer className='bg-white border-t border-border py-12'>
 			<div className='max-w-1200px mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6'>

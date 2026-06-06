@@ -1,9 +1,13 @@
+import React from 'react';
 interface SectionHeadingProps {
 	title: string;
 	subtitle?: string;
 }
 
-export const SectionHeading = ({ title, subtitle }: SectionHeadingProps) => {
+export const SectionHeading = ({
+	title,
+	subtitle
+}: SectionHeadingProps): React.JSX.Element => {
 	return (
 		<div className='text-center mb-16'>
 			<h2 className='text-3xl md:text-4xl font-bold text-charcoal'>
