@@ -11,22 +11,26 @@ const features = [
 	{
 		icon: <UserOutlined className='text-3xl text-matcha' />,
 		title: 'Showcase Your Work',
-		description: 'Build a professional profile that highlights your skills, portfolio, and availability.'
+		description:
+			'Build a professional profile that highlights your skills, portfolio, and availability.'
 	},
 	{
 		icon: <CalendarOutlined className='text-3xl text-matcha' />,
 		title: 'Manage Bookings',
-		description: 'Let clients book appointments directly through the app with integrated scheduling.'
+		description:
+			'Let clients book appointments directly through the app with integrated scheduling.'
 	},
 	{
 		icon: <MessageOutlined className='text-3xl text-matcha' />,
 		title: 'Client Communication',
-		description: 'Chat with clients in real-time, share updates, and keep everything organized.'
+		description:
+			'Chat with clients in real-time, share updates, and keep everything organized.'
 	},
 	{
 		icon: <RiseOutlined className='text-3xl text-matcha' />,
 		title: 'Grow Your Reach',
-		description: 'Get discovered by new clients through our community-driven discovery features.'
+		description:
+			'Get discovered by new clients through our community-driven discovery features.'
 	}
 ];
 

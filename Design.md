@@ -19,15 +19,19 @@ Matcha is a **landing page** for a mobile social media platform designed for **s
 ## Design Language
 
 ### Style
+
 **Warm / Organic** — Soft shapes, natural tones, and a friendly, approachable feel.
 
 ### Content Density
+
 **Spacious / Airy** — Generous whitespace, large padding, and breathing room between sections.
 
 ### Motion
+
 **Minimal / None** — No animations or transitions. Content appears instantly for a clean, fast experience.
 
 ### Theme
+
 **Light only** — No dark mode. The design uses a light, warm background throughout.
 
 ---
@@ -49,9 +53,9 @@ Matcha is a **landing page** for a mobile social media platform designed for **s
 ## Typography
 
 - **Font family:** System font stack (no custom fonts — fast and native)
-  ```
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  ```
+    ```
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    ```
 - **Headings:** Bold, tight letter-spacing, charcoal color
 - **Body:** Regular weight, comfortable line-height (1.6–1.8), warm gray
 - **Scale:** Large hero headline → medium section headings → base body text
@@ -67,12 +71,14 @@ Matcha is a **landing page** for a mobile social media platform designed for **s
 ## Layout & Navigation
 
 ### Navigation Bar
+
 - **Style:** Sticky top navbar (remains visible on scroll)
 - **Content:** Logo (left) + page links: Home, About, Download (right)
 - **Background:** White with a subtle bottom border
 - **On mobile:** Collapse into a hamburger menu
 
 ### Page Width
+
 - Max content width: `1200px`, centered
 - Section padding: generous vertical spacing (`80px–120px` between sections)
 
@@ -85,33 +91,33 @@ Matcha is a **landing page** for a mobile social media platform designed for **s
 Sections in order:
 
 1. **Hero**
-   - Large headline (e.g., "Your Services. Your Community.")
-   - Subheadline explaining Matcha's purpose in one sentence
-   - Primary CTA button ("Download the App") in matcha green
-   - Optional: hero illustration or app mockup
+    - Large headline (e.g., "Your Services. Your Community.")
+    - Subheadline explaining Matcha's purpose in one sentence
+    - Primary CTA button ("Download the App") in matcha green
+    - Optional: hero illustration or app mockup
 
 2. **Features / Benefits**
-   - 3–4 feature cards in a grid
-   - Each card: icon + short title + one-line description
-   - Focus on benefits for service providers (reach clients, manage bookings, showcase work)
+    - 3–4 feature cards in a grid
+    - Each card: icon + short title + one-line description
+    - Focus on benefits for service providers (reach clients, manage bookings, showcase work)
 
 3. **How It Works**
-   - 3-step horizontal layout (or vertical on mobile)
-   - Numbered steps with icons and brief explanations
+    - 3-step horizontal layout (or vertical on mobile)
+    - Numbered steps with icons and brief explanations
 
 4. **Screenshots / App Preview**
-   - Mobile app mockups showing key screens
-   - Light background to make screenshots pop
+    - Mobile app mockups showing key screens
+    - Light background to make screenshots pop
 
 5. **FAQ**
-   - Accordion-style list of 4–6 common questions
-   - Topics: what is Matcha, who is it for, how to get started, pricing, etc.
+    - Accordion-style list of 4–6 common questions
+    - Topics: what is Matcha, who is it for, how to get started, pricing, etc.
 
 6. **Footer**
-   - Logo + tagline
-   - Links: Home, About, Download
-   - Social media icons
-   - Copyright notice
+    - Logo + tagline
+    - Links: Home, About, Download
+    - Social media icons
+    - Copyright notice
 
 ### About (`/about`)
 

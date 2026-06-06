@@ -52,7 +52,7 @@ export const Route = createFileRoute('/api/deploy')({
 						{ success: false, error: message },
 						{ status: 500 }
 					);
-				};
+				}
 			}
 		}
 	}

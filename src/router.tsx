@@ -13,7 +13,7 @@ export const getRouter = () => {
 };
 
 declare module '@tanstack/react-router' {
-  interface Register {
-    router: ReturnType<typeof getRouter>
-  }
+	interface Register {
+		router: ReturnType<typeof getRouter>;
+	}
 }

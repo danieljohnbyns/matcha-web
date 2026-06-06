@@ -1,6 +1,6 @@
 interface SectionHeadingProps {
-  title: string
-  subtitle?: string
+	title: string;
+	subtitle?: string;
 }
 
 export const SectionHeading = ({ title, subtitle }: SectionHeadingProps) => {
