@@ -1,21 +1,18 @@
 services:
   web:
-    build: .
+    image: ghcr.io/balancedfutures/matcha-web:latest
     restart: always
     ports:
       - "4173:4173"
     environment:
       - NODE_ENV=production
-    # Assuming preview runs on 4173
 
   webhook:
-    build: .
+    image: ghcr.io/balancedfutures/matcha-web:latest
     restart: always
     ports:
       - "9000:9000"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - .:/app
     environment:
       - GITHUB_WEBHOOK_SECRET=${GITHUB_WEBHOOK_SECRET}
+    # Override command to run listener
     command: ["bun", "scripts/webhook-listener.ts"]
