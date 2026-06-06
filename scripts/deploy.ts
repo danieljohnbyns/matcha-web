@@ -87,8 +87,9 @@ try {
 	});
 } catch {
 	// If restart fails, try starting the process
+	// Split "bun run preview" into individual arguments for spawn/pm2
 	await exec(
-		['bunx', 'pm2', 'start', 'bun run preview', '--name', 'matcha-web'],
+		['bunx', 'pm2', 'start', 'bun', '--name', 'matcha-web', '--', 'run', 'preview'],
 		{
 			cwd: process.cwd(),
 			stdio: 'pipe'
