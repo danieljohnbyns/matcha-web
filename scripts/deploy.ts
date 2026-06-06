@@ -1,4 +1,5 @@
 import { spawn } from 'bun';
+import pm2 from 'pm2';
 
 const LOG_FILE = 'deploy.log';
 
@@ -51,31 +52,30 @@ await exec(['bun', 'run', 'build'], {
 	cwd: process.cwd(),
 	stdio: 'pipe'
 });
-try {
-	await exec(['bunx', 'pm2', 'restart', 'matcha-web'], {
-		cwd: process.cwd(),
-		stdio: 'pipe'
-	});
-} catch {
-	// If restart fails, try starting the process
-	// Split "bun run preview" into individual arguments for spawn/pm2
-	await exec(
-		[
-			'bunx',
-			'pm2',
-			'start',
-			'bun',
-			'--name',
-			'matcha-web',
-			'--',
-			'run',
-			'preview'
-		],
-		{
-			cwd: process.cwd(),
-			stdio: 'pipe'
-		}
-	);
-};
+pm2.restart('matcha-web', (err) => {
+	if (err)
+		pm2.start(
+			{
+				name: 'matcha-web',
+				script: 'bun',
+				args: 'run preview',
+				cwd: process.cwd(),
+				env: process.env as Record<string, string>
+			},
+			(startErr) => {
+				if (startErr) {
+					console.error('Failed to start matcha-web:', startErr);
+					logs += `Failed to start matcha-web: ${startErr.message}\n`;
+				} else {
+					console.log('matcha-web started successfully');
+					logs += 'matcha-web started successfully\n';
+				};
+			}
+		);
+	else {
+		console.log('matcha-web restarted successfully');
+		logs += 'matcha-web restarted successfully\n';
+	};
+});
 
 Bun.write(LOG_FILE, logs);
