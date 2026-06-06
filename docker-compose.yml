@@ -13,6 +13,9 @@ services:
     restart: always
     ports:
       - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - .:/app
     environment:
       - GITHUB_WEBHOOK_SECRET=${GITHUB_WEBHOOK_SECRET}
     command: ["bun", "scripts/webhook-listener.ts"]

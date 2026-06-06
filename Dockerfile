@@ -14,12 +14,17 @@ COPY . .
 RUN bun run build
 
 # Final image
-FROM base AS runner
+FROM oven/bun:latest AS runner
 WORKDIR /app
+
+# Install git and docker cli for deployment scripts
+RUN apt-get update && apt-get install -y git docker.io && rm -rf /var/lib/apt/lists/*
+
 # Only copy production dependencies and the build artifact
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/scripts ./scripts
 
 # Expose port
 EXPOSE 4173
