@@ -1,5 +1,0 @@
-[phases.setup]
-nixPkgs = ["bun", "nodejs_22"]
-
-[start]
-cmd = "node dist/server/server.js"
