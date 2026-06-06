@@ -16,7 +16,7 @@ jobs:
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
-      - name: Force push main to production and deploy
+      - name: Force push main to production
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -27,7 +27,3 @@ jobs:
           git commit -m "chore: bump version for deployment"
           git push origin main
           git push origin main:production --force
-      - name: Trigger Deployment Webhook
-        run: |
-          curl -X POST http://13.213.91.227:4173/api/deploy \
-            -H "Authorization: Bearer ${{ secrets.DEPLOY_SECRET }}"
