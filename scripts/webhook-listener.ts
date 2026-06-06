@@ -36,8 +36,8 @@ Bun.serve({
 
 		// Only trigger deploy if it's a push to the production branch
 		if (payload.ref === 'refs/heads/production') {
-			// Trigger deploy asynchronously
-			spawn(['bun', 'run', 'deploy'], {
+			// Trigger docker restart
+			spawn(['docker', 'restart', 'matcha-web'], {
 				cwd: process.cwd()
 			});
 			return new Response('Deployment triggered', { status: 202 });
