@@ -1,6 +1,6 @@
 import { spawn } from 'bun';
 
-const LOG_FILE = `deploy-${new Date().toISOString().replace(/[:.]/g, '-')}.log`;
+const LOG_FILE = 'deploy.log';
 
 const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 	const proc = spawn(command, {
