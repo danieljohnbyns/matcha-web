@@ -11,9 +11,7 @@
 		"preview": "vite preview --host",
 		"test": "vitest run",
 		"lint": "bun scripts/lint.ts",
-		"check": "prettier --check .",
-		"deploy": "bun scripts/deploy.ts",
-		"start:listener": "pm2 start bun --name webhook-listener --cwd /home/ubuntu/matcha-web -- /home/ubuntu/matcha-web/scripts/webhook-listener.ts"
+		"check": "prettier --check ."
 	},
 	"dependencies": {
 		"@ant-design/icons": "^6.2.5",
