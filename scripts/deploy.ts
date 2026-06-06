@@ -18,7 +18,7 @@ const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 				const text = new TextDecoder().decode(chunk);
 				process.stdout.write(text);
 				writer.write(text);
-			}
+			};
 		})();
 
 		// Read from the stderr stream
@@ -27,7 +27,7 @@ const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 				const text = new TextDecoder().decode(chunk);
 				process.stderr.write(text);
 				writer.write(text);
-			}
+			};
 		})();
 
 		proc.exited
@@ -44,7 +44,6 @@ const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 				reject(err);
 			});
 	});
-
 };
 
 await exec(['git', 'reset', '--hard'], { cwd: process.cwd(), stdio: 'pipe' });
