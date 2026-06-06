@@ -34,10 +34,13 @@ export const Route = createFileRoute('/api/deploy')({
 					execSync('bun run build', { cwd: rootDir, stdio: 'pipe' });
 
 					// Restart the production server via PM2
-					execSync('bunx pm2 restart matcha-web', {
-						cwd: rootDir,
-						stdio: 'pipe'
-					});
+					execSync(
+						'bunx pm2 restart matcha-web || bunx pm2 start "bun run preview" --name matcha-web',
+						{
+							cwd: rootDir,
+							stdio: 'pipe'
+						}
+					);
 
 					return Response.json({
 						success: true,
