@@ -10,13 +10,19 @@ export const Route = createFileRoute('/api/deploy')({
 				// Verify the deploy secret
 				const authHeader = request.headers.get('authorization');
 				if (!DEPLOY_SECRET || authHeader !== `Bearer ${DEPLOY_SECRET}`)
-					return Response.json({ error: 'Unauthorized' }, { status: 401 });
+					return Response.json(
+						{ error: 'Unauthorized' },
+						{ status: 401 }
+					);
 
 				try {
 					const rootDir = process.cwd();
 
 					// git reset --hard
-					execSync('git reset --hard', { cwd: rootDir, stdio: 'pipe' });
+					execSync('git reset --hard', {
+						cwd: rootDir,
+						stdio: 'pipe'
+					});
 
 					// git pull
 					execSync('git pull', { cwd: rootDir, stdio: 'pipe' });
@@ -39,7 +45,9 @@ export const Route = createFileRoute('/api/deploy')({
 					});
 				} catch (error) {
 					const message =
-            error instanceof Error ? error.message : 'Unknown error';
+						error instanceof Error
+							? error.message
+							: 'Unknown error';
 					return Response.json(
 						{ success: false, error: message },
 						{ status: 500 }
