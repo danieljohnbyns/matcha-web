@@ -12,7 +12,7 @@
 		"test": "vitest run",
 		"lint": "bun scripts/lint.ts",
 		"check": "prettier --check .",
-		"deploy": "git reset --hard && git pull && bun ci && bun run build && (bunx pm2 restart matcha-web || bunx pm2 start 'bun run preview' --name matcha-web)"
+		"deploy": "bun scripts/deploy.ts"
 	},
 	"dependencies": {
 		"@ant-design/icons": "^6.2.5",
