@@ -10,7 +10,7 @@ const config = defineConfig({
 	resolve: { tsconfigPaths: true },
 	server: {
 		cors: true,
-		port: 3000
+		port: 3010
 	},
 	plugins: [devtools(), tailwindcss(), tanstackStart(), viteReact()]
 });
