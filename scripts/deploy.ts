@@ -54,7 +54,8 @@ await exec(['bun', 'run', 'build'], {
 	stdio: 'pipe'
 });
 pm2.restart('matcha-web', (err) => {
-	if (err)
+	if (err) {
+		logs += `Failed to restart matcha-web: ${err.message}\n`;
 		pm2.start(
 			{
 				name: 'matcha-web',
@@ -73,7 +74,7 @@ pm2.restart('matcha-web', (err) => {
 				};
 			}
 		);
-	else {
+	} else {
 		console.log('matcha-web restarted successfully');
 		logs += 'matcha-web restarted successfully\n';
 	};
