@@ -20,7 +20,7 @@ export const Screenshots = (): React.JSX.Element => {
 					{screens.map((screen) => (
 						<div
 							key={screen.label}
-							className={`${screen.bg} rounded-2xl aspect-[9/16] flex items-center justify-center`}
+							className={`${screen.bg} rounded-2xl aspect-9/16 flex items-center justify-center`}
 						>
 							<span className='text-warm-gray text-sm font-medium'>
 								{screen.label}
