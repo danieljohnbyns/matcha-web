@@ -10,13 +10,15 @@ const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 	});
 
 	return new Promise<void>((resolve, reject) => {
+		const writer = Bun.file(LOG_FILE).writer();
+
 		// Read from the stdout stream
 		(async () => {
 			for await (const chunk of proc.stdout) {
 				const text = new TextDecoder().decode(chunk);
 				process.stdout.write(text);
-				await Bun.write(LOG_FILE, text);
-			};
+				writer.write(text);
+			}
 		})();
 
 		// Read from the stderr stream
@@ -24,20 +26,25 @@ const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 			for await (const chunk of proc.stderr) {
 				const text = new TextDecoder().decode(chunk);
 				process.stderr.write(text);
-				await Bun.write(LOG_FILE, text);
-			};
+				writer.write(text);
+			}
 		})();
 
 		proc.exited
 			.then(() => {
+				writer.end();
 				if (proc.exitCode === 0) resolve();
 				else
 					reject(
 						new Error(`Process exited with code ${proc.exitCode}`)
 					);
 			})
-			.catch(reject);
+			.catch((err) => {
+				writer.end();
+				reject(err);
+			});
 	});
+
 };
 
 await exec(['git', 'reset', '--hard'], { cwd: process.cwd(), stdio: 'pipe' });
