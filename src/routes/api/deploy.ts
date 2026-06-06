@@ -18,11 +18,29 @@ export const Route = createFileRoute('/api/deploy')({
 				try {
 					const rootDir = process.cwd();
 
-					// bun run deploy
-					execSync('bun run deploy', {
+					// git reset --hard
+					execSync('git reset --hard', {
 						cwd: rootDir,
 						stdio: 'pipe'
 					});
+
+					// git pull
+					execSync('git pull', { cwd: rootDir, stdio: 'pipe' });
+
+					// bun ci (clean install)
+					execSync('bun ci', { cwd: rootDir, stdio: 'pipe' });
+
+					// build
+					execSync('bun run build', { cwd: rootDir, stdio: 'pipe' });
+
+					// Restart the production server via PM2
+					execSync(
+						'bunx pm2 restart matcha-web || bunx pm2 start "bun run preview" --name matcha-web',
+						{
+							cwd: rootDir,
+							stdio: 'pipe'
+						}
+					);
 
 					return Response.json({
 						success: true,
