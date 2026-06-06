@@ -16,7 +16,7 @@ COPY --from=builder /app/node_modules /app/node_modules
 COPY --from=builder /app/package.json /app/package.json
 
 ENV NODE_ENV=production
-EXPOSE 3010
+EXPOSE 3000
 
 # Runtime environment variables should be injected by the deployment platform (Dokploy).
 CMD ["node", "dist/server/server.js"]
