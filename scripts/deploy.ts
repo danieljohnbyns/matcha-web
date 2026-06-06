@@ -74,7 +74,7 @@ const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 };
 
 await exec(['git', 'reset', '--hard'], { cwd: process.cwd(), stdio: 'pipe' });
-await exec(['git', 'pull'], { cwd: process.cwd(), stdio: 'pipe' });
+await exec(['git', 'pull', '--rebase'], { cwd: process.cwd(), stdio: 'pipe' });
 await exec(['bun', 'ci'], { cwd: process.cwd(), stdio: 'pipe' });
 await exec(['bun', 'run', 'build'], {
 	cwd: process.cwd(),
