@@ -1,0 +1,12 @@
+services:
+  matcha-web:
+    build: .
+    container_name: matcha-web
+    ports:
+      - "8999:8999"
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - GITHUB_WEBHOOK_SECRET=${GITHUB_WEBHOOK_SECRET}
+    restart: always
