@@ -2,6 +2,8 @@ import { spawn } from 'bun';
 
 const LOG_FILE = 'deploy.log';
 
+let logs = '';
+
 const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 	const proc = spawn(command, {
 		cwd: options.cwd,
@@ -10,14 +12,12 @@ const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 	});
 
 	return new Promise<void>((resolve, reject) => {
-		const writer = Bun.file(LOG_FILE).writer();
-
 		// Read from the stdout stream
 		(async () => {
 			for await (const chunk of proc.stdout) {
 				const text = new TextDecoder().decode(chunk);
 				process.stdout.write(text);
-				writer.write(text);
+				logs += text;
 			};
 		})();
 
@@ -26,13 +26,12 @@ const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 			for await (const chunk of proc.stderr) {
 				const text = new TextDecoder().decode(chunk);
 				process.stderr.write(text);
-				writer.write(text);
+				logs += text;
 			};
 		})();
 
 		proc.exited
 			.then(() => {
-				writer.end();
 				if (proc.exitCode === 0) resolve();
 				else
 					reject(
@@ -40,7 +39,6 @@ const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 					);
 			})
 			.catch((err) => {
-				writer.end();
 				reject(err);
 			});
 	});
@@ -79,3 +77,5 @@ try {
 		}
 	);
 };
+
+Bun.write(LOG_FILE, logs);
