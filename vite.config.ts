@@ -8,6 +8,11 @@ import tailwindcss from '@tailwindcss/vite';
 
 const config = defineConfig({
 	resolve: { tsconfigPaths: true },
+	server: {
+		cors: {
+			origin: '*'
+		}
+	},
 	plugins: [devtools(), tailwindcss(), tanstackStart(), viteReact()]
 });
 
