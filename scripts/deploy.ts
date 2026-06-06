@@ -2,6 +2,7 @@ import { spawn } from 'bun';
 import pm2 from 'pm2';
 
 const LOG_FILE = 'deploy.log';
+Bun.write(LOG_FILE, `Deployment started at ${new Date().toISOString()}\n`);
 
 let logs = '';
 
