@@ -1,10 +1,7 @@
 import { spawn } from 'bun';
-import pm2 from 'pm2';
 
 const LOG_FILE = 'deploy.log';
-Bun.write(LOG_FILE, `Deployment started at ${new Date().toISOString()}\n`);
-
-let logs = '';
+await Bun.write(LOG_FILE, `Deployment started at ${new Date().toISOString()}\n`);
 
 const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 	const proc = spawn(command, {
@@ -14,13 +11,15 @@ const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 	});
 
 	return new Promise<void>((resolve, reject) => {
+		const writer = Bun.file(LOG_FILE).writer();
+
 		// Read from the stdout stream
 		(async () => {
 			for await (const chunk of proc.stdout) {
 				const text = new TextDecoder().decode(chunk);
 				process.stdout.write(text);
-				logs += text;
-			};
+				writer.write(text);
+			}
 		})();
 
 		// Read from the stderr stream
@@ -28,12 +27,13 @@ const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 			for await (const chunk of proc.stderr) {
 				const text = new TextDecoder().decode(chunk);
 				process.stderr.write(text);
-				logs += text;
-			};
+				writer.write(text);
+			}
 		})();
 
 		proc.exited
 			.then(() => {
+				writer.end();
 				if (proc.exitCode === 0) resolve();
 				else
 					reject(
@@ -41,43 +41,13 @@ const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 					);
 			})
 			.catch((err) => {
+				writer.end();
 				reject(err);
 			});
 	});
 };
 
+// Sync with git, then deploy with docker compose
 await exec(['git', 'fetch', 'origin'], { cwd: process.cwd(), stdio: 'pipe' });
 await exec(['git', 'reset', '--hard', 'origin/production'], { cwd: process.cwd(), stdio: 'pipe' });
-await exec(['bun', 'ci'], { cwd: process.cwd(), stdio: 'pipe' });
-await exec(['bun', 'run', 'build'], {
-	cwd: process.cwd(),
-	stdio: 'pipe'
-});
-pm2.restart('matcha-web', (err) => {
-	if (err) {
-		logs += `Failed to restart matcha-web: ${err.message}\n`;
-		pm2.start(
-			{
-				name: 'matcha-web',
-				script: 'bun',
-				args: 'run preview',
-				cwd: process.cwd(),
-				env: process.env as Record<string, string>
-			},
-			(startErr) => {
-				if (startErr) {
-					console.error('Failed to start matcha-web:', startErr);
-					logs += `Failed to start matcha-web: ${startErr.message}\n`;
-				} else {
-					console.log('matcha-web started successfully');
-					logs += 'matcha-web started successfully\n';
-				};
-			}
-		);
-	} else {
-		console.log('matcha-web restarted successfully');
-		logs += 'matcha-web restarted successfully\n';
-	};
-});
-
-Bun.write(LOG_FILE, logs);
+await exec(['docker', 'compose', 'up', '-d', '--build'], { cwd: process.cwd(), stdio: 'pipe' });
