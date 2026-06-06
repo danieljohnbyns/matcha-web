@@ -1,7 +1,10 @@
 import { spawn } from 'bun';
 
 const LOG_FILE = 'deploy.log';
-await Bun.write(LOG_FILE, `Deployment started at ${new Date().toISOString()}\n`);
+await Bun.write(
+	LOG_FILE,
+	`Deployment started at ${new Date().toISOString()}\n`
+);
 
 const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 	const proc = spawn(command, {
@@ -19,7 +22,7 @@ const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 				const text = new TextDecoder().decode(chunk);
 				process.stdout.write(text);
 				writer.write(text);
-			}
+			};
 		})();
 
 		// Read from the stderr stream
@@ -28,7 +31,7 @@ const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 				const text = new TextDecoder().decode(chunk);
 				process.stderr.write(text);
 				writer.write(text);
-			}
+			};
 		})();
 
 		proc.exited
@@ -49,5 +52,11 @@ const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 
 // Sync with git, then deploy with docker compose
 await exec(['git', 'fetch', 'origin'], { cwd: process.cwd(), stdio: 'pipe' });
-await exec(['git', 'reset', '--hard', 'origin/production'], { cwd: process.cwd(), stdio: 'pipe' });
-await exec(['docker', 'compose', 'up', '-d', '--build'], { cwd: process.cwd(), stdio: 'pipe' });
+await exec(['git', 'reset', '--hard', 'origin/production'], {
+	cwd: process.cwd(),
+	stdio: 'pipe'
+});
+await exec(['docker', 'compose', 'up', '-d', '--build'], {
+	cwd: process.cwd(),
+	stdio: 'pipe'
+});
