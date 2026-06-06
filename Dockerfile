@@ -8,7 +8,7 @@ COPY . .
 RUN bun run build
 
 # Stage 2: Production
-FROM node:22-slim AS runner
+FROM oven/bun:latest AS runner
 WORKDIR /app
 # Copy the built artifacts
 COPY --from=builder /app/dist /app/dist
@@ -19,4 +19,4 @@ ENV NODE_ENV=production
 EXPOSE 3010
 
 # Runtime environment variables should be injected by the deployment platform (Dokploy).
-CMD ["node", "dist/server/server.js"]
+CMD ["bun", "dist/server/server.js"]
