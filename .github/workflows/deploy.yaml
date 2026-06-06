@@ -28,5 +28,5 @@ jobs:
                   git push origin main:production --force
             - name: Trigger Deployment Webhook
               run: |
-                  curl -X POST http://13.213.91.227:4173/ \
+                  curl -X POST http://13.213.91.227:4173/api/deploy \
                     -H "Authorization: Bearer ${{ secrets.DEPLOY_SECRET }}"
