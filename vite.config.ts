@@ -9,8 +9,7 @@ import tailwindcss from '@tailwindcss/vite';
 const config = defineConfig({
 	resolve: { tsconfigPaths: true },
 	server: {
-		cors: true,
-		port: 3010
+		cors: true
 	},
 	plugins: [devtools(), tailwindcss(), tanstackStart(), viteReact()]
 });

@@ -12,8 +12,9 @@ RUN bun run build
 FROM oven/bun:latest
 WORKDIR /app
 
-COPY --from=builder /app/.output ./.output
+COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package.json ./
+COPY --from=builder /app/node_modules ./node_modules
 
 EXPOSE 8000
 CMD ["bun", "run", "start"]
