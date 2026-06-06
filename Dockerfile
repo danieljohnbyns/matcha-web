@@ -1,26 +1,21 @@
-# Build stage
-FROM oven/bun:latest AS build
+# Stage 1: Build
+FROM oven/bun:latest AS builder
 WORKDIR /app
 COPY package.json bun.lock ./
-RUN bun install
+RUN bun install --frozen-lockfile
 COPY . .
 RUN bun run build
 
-# Runtime stage
-FROM oven/bun:latest
+# Stage 2: Production
+FROM node:22-slim AS runner
 WORKDIR /app
+# Only copy the built artifacts and production dependencies
+# For a TanStack Start application, the server needs the bundled code.
+COPY --from=builder /app/dist /app/dist
+COPY --from=builder /app/node_modules /app/node_modules
+COPY --from=builder /app/package.json /app/package.json
 
-# Install docker client to allow the webhook listener to interact with docker daemon
-RUN apt-get update && apt-get install -y docker.io && rm -rf /var/lib/apt/lists/*
+ENV NODE_ENV=production
+EXPOSE 3000
 
-COPY --from=build /app/dist ./dist
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/package.json ./package.json
-COPY --from=build /app/scripts ./scripts
-COPY --from=build /app/src ./src
-COPY --from=build /app/vite.config.ts ./vite.config.ts
-COPY --from=build /app/tsconfig.json ./tsconfig.json
-COPY entrypoint.sh .
-
-EXPOSE 8999 9000
-ENTRYPOINT ["/app/entrypoint.sh"]
+CMD ["node", "dist/server/server.js"]
