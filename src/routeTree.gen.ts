@@ -8,115 +8,115 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root';
-import { Route as DownloadRouteImport } from './routes/download';
-import { Route as AboutRouteImport } from './routes/about';
-import { Route as IndexRouteImport } from './routes/index';
-import { Route as ApiDeployRouteImport } from './routes/api/deploy';
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as DownloadRouteImport } from './routes/download'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiDeployRouteImport } from './routes/api/deploy'
 
 const DownloadRoute = DownloadRouteImport.update({
-	id: '/download',
-	path: '/download',
-	getParentRoute: () => rootRouteImport
-} as any);
+  id: '/download',
+  path: '/download',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
-	id: '/about',
-	path: '/about',
-	getParentRoute: () => rootRouteImport
-} as any);
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
-	id: '/',
-	path: '/',
-	getParentRoute: () => rootRouteImport
-} as any);
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiDeployRoute = ApiDeployRouteImport.update({
-	id: '/api/deploy',
-	path: '/api/deploy',
-	getParentRoute: () => rootRouteImport
-} as any);
+  id: '/api/deploy',
+  path: '/api/deploy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
-	'/': typeof IndexRoute;
-	'/about': typeof AboutRoute;
-	'/download': typeof DownloadRoute;
-	'/api/deploy': typeof ApiDeployRoute;
+  '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/download': typeof DownloadRoute
+  '/api/deploy': typeof ApiDeployRoute
 }
 export interface FileRoutesByTo {
-	'/': typeof IndexRoute;
-	'/about': typeof AboutRoute;
-	'/download': typeof DownloadRoute;
-	'/api/deploy': typeof ApiDeployRoute;
+  '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/download': typeof DownloadRoute
+  '/api/deploy': typeof ApiDeployRoute
 }
 export interface FileRoutesById {
-	__root__: typeof rootRouteImport;
-	'/': typeof IndexRoute;
-	'/about': typeof AboutRoute;
-	'/download': typeof DownloadRoute;
-	'/api/deploy': typeof ApiDeployRoute;
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/download': typeof DownloadRoute
+  '/api/deploy': typeof ApiDeployRoute
 }
 export interface FileRouteTypes {
-	fileRoutesByFullPath: FileRoutesByFullPath;
-	fullPaths: '/' | '/about' | '/download' | '/api/deploy';
-	fileRoutesByTo: FileRoutesByTo;
-	to: '/' | '/about' | '/download' | '/api/deploy';
-	id: '__root__' | '/' | '/about' | '/download' | '/api/deploy';
-	fileRoutesById: FileRoutesById;
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths: '/' | '/about' | '/download' | '/api/deploy'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/about' | '/download' | '/api/deploy'
+  id: '__root__' | '/' | '/about' | '/download' | '/api/deploy'
+  fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-	IndexRoute: typeof IndexRoute;
-	AboutRoute: typeof AboutRoute;
-	DownloadRoute: typeof DownloadRoute;
-	ApiDeployRoute: typeof ApiDeployRoute;
+  IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  DownloadRoute: typeof DownloadRoute
+  ApiDeployRoute: typeof ApiDeployRoute
 }
 
 declare module '@tanstack/react-router' {
-	interface FileRoutesByPath {
-		'/download': {
-			id: '/download';
-			path: '/download';
-			fullPath: '/download';
-			preLoaderRoute: typeof DownloadRouteImport;
-			parentRoute: typeof rootRouteImport;
-		};
-		'/about': {
-			id: '/about';
-			path: '/about';
-			fullPath: '/about';
-			preLoaderRoute: typeof AboutRouteImport;
-			parentRoute: typeof rootRouteImport;
-		};
-		'/': {
-			id: '/';
-			path: '/';
-			fullPath: '/';
-			preLoaderRoute: typeof IndexRouteImport;
-			parentRoute: typeof rootRouteImport;
-		};
-		'/api/deploy': {
-			id: '/api/deploy';
-			path: '/api/deploy';
-			fullPath: '/api/deploy';
-			preLoaderRoute: typeof ApiDeployRouteImport;
-			parentRoute: typeof rootRouteImport;
-		};
-	}
+  interface FileRoutesByPath {
+    '/download': {
+      id: '/download'
+      path: '/download'
+      fullPath: '/download'
+      preLoaderRoute: typeof DownloadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/deploy': {
+      id: '/api/deploy'
+      path: '/api/deploy'
+      fullPath: '/api/deploy'
+      preLoaderRoute: typeof ApiDeployRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+  }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-	IndexRoute: IndexRoute,
-	AboutRoute: AboutRoute,
-	DownloadRoute: DownloadRoute,
-	ApiDeployRoute: ApiDeployRoute
-};
+  IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  DownloadRoute: DownloadRoute,
+  ApiDeployRoute: ApiDeployRoute,
+}
 export const routeTree = rootRouteImport
-	._addFileChildren(rootRouteChildren)
-	._addFileTypes<FileRouteTypes>();
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()
 
-import type { getRouter } from './router.tsx';
-import type { createStart } from '@tanstack/react-start';
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
 declare module '@tanstack/react-start' {
-	interface Register {
-		ssr: true;
-		router: Awaited<ReturnType<typeof getRouter>>;
-	}
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
 }
