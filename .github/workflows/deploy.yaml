@@ -25,6 +25,7 @@ jobs:
           bun pm version patch --no-git-tag-version
           git add package.json
           git commit -m "chore: bump version for deployment"
+          git push origin main
           git push origin main:production --force
       - name: Trigger Deployment Webhook
         run: |
