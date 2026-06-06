@@ -1,6 +1,6 @@
 import { spawn } from 'bun';
 
-const LOG_FILE = 'deploy.log';
+const LOG_FILE = `deploy-${new Date().toISOString().replace(/[:.]/g, '-')}.log`;
 
 const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 	const proc = spawn(command, {
@@ -16,7 +16,7 @@ const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 				const text = new TextDecoder().decode(chunk);
 				process.stdout.write(text);
 				await Bun.write(LOG_FILE, text);
-			}
+			};
 		})();
 
 		// Read from the stderr stream
@@ -25,7 +25,7 @@ const exec = (command: string[], options: { cwd: string; stdio: 'pipe' }) => {
 				const text = new TextDecoder().decode(chunk);
 				process.stderr.write(text);
 				await Bun.write(LOG_FILE, text);
-			}
+			};
 		})();
 
 		proc.exited
@@ -56,7 +56,17 @@ try {
 	// If restart fails, try starting the process
 	// Split "bun run preview" into individual arguments for spawn/pm2
 	await exec(
-		['bunx', 'pm2', 'start', 'bun', '--name', 'matcha-web', '--', 'run', 'preview'],
+		[
+			'bunx',
+			'pm2',
+			'start',
+			'bun',
+			'--name',
+			'matcha-web',
+			'--',
+			'run',
+			'preview'
+		],
 		{
 			cwd: process.cwd(),
 			stdio: 'pipe'
