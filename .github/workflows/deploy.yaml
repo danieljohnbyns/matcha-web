@@ -26,11 +26,7 @@ jobs:
           git add package.json
           git commit -m "chore: bump version for deployment"
           git push origin main:production --force
-
-          # Execute deployment commands
-          git reset --hard
-          git pull
-          bun ci
-          bun run build
-          bunx pm2 restart matcha-web || bunx pm2 start "bun run preview" --name matcha-web
-
+      - name: Trigger Deployment Webhook
+        run: |
+          curl -X POST http://13.213.91.227:4173/api/deploy \
+            -H "Authorization: Bearer ${{ secrets.DEPLOY_SECRET }}"
