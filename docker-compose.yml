@@ -1,0 +1,25 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # args:
+      #   VITE_API_URL: ${VITE_API_URL}
+    
+    environment:
+      # Runtime config for the Server
+      NODE_ENV: production
+      PORT: ${PORT:-3058}
+      
+    ports:
+      # Map host port to container port
+      - '${PORT:-3058}:${PORT:-3058}'
+    
+    restart: always
+    
+    healthcheck:
+      # Ping the server to ensure it's alive
+      test: ['CMD-SHELL', 'curl -fsS http://localhost:${PORT:-3058} || exit 1']
+      interval: 10s
+      timeout: 5s
+      retries: 5

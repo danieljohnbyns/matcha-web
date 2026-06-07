@@ -1,43 +1,52 @@
-# ---- Base Stage: Common Setup ----
-FROM oven/bun:1 AS base
+# syntax=docker/dockerfile:1
+
+# =============================================
+# Stage 1: Builder
+# =============================================
+FROM oven/bun:1-alpine AS builder
 WORKDIR /app
 
-# ---- Dependencies Stage: Install and Cache Modules ----
-FROM base AS deps
-# Copy dependency manifests first for better layer caching
-COPY package.json bun.lockb ./
-# Install all dependencies (including dev) needed for the build step
+# Install dependencies (cached layer)
+COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
-# ---- Builder Stage: Build the Application ----
-FROM base AS builder
-# Copy installed modules and source code from the previous stage
-COPY --from=deps /app/node_modules ./node_modules
+# Copy the source code
 COPY . .
-# Build the TanStack Start application
+
+# --- IMPORTANT ---
+# Vite needs these variables AT BUILD TIME to replace import.meta.env values
+# ARG VITE_API_URL
+# ENV VITE_API_URL=${VITE_API_URL}
+
+# Build the app
 RUN bun run build
 
-# ---- Production Stage: Final Runtime Image ----
-FROM base AS runner
-WORKDIR /app
 
-# Set the environment to production
+# =============================================
+# Stage 2: Runner (Production)
+# =============================================
+FROM oven/bun:1-alpine AS runner
+WORKDIR /app
 ENV NODE_ENV=production
 
-# Create a non-root user for security
-RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 bunjs
+# Install curl for healthchecks
+RUN apk add --no-cache curl
 
-# Copy necessary artifacts from the builder stage
-COPY --from=builder --chown=bunjs:nodejs /app/dist ./dist
-COPY --from=builder --chown=bunjs:nodejs /app/package.json ./package.json
-COPY --from=builder --chown=bunjs:nodejs /app/server.ts ./server.ts
+# Copy package files
+COPY package.json bun.lock ./
 
-# Switch to the non-root user
-USER bunjs
+# Install ONLY production deps
+RUN bun install --production
 
-# Expose the port your app will listen on
-EXPOSE 3000
+# Copy the build artifacts from the Builder stage
+COPY --from=builder --chown=bun:bun /app/dist ./dist
+COPY --from=builder --chown=bun:bun /app/server.ts ./server.ts
 
-# Run the custom Bun server script
-CMD ["bun", "run", "server.ts"]
+USER bun
+
+# The port is dynamic via Env Vars
+ENV PORT=3058
+EXPOSE 3058
+
+# Start the Custom Bun Server
+CMD ["bun", "server.ts"]
