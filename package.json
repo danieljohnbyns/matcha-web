@@ -9,7 +9,7 @@
 		"dev": "bun --bun vite dev --port 3000",
 		"build": "bun --bun vite build",
 		"preview": "bun --bun vite preview --port 3000 --host",
-		"start": "bun run dist/server/server.js",
+		"start": "PORT=3000 bun run dist/server/server.js",
 		"test": "vitest run",
 		"lint": "bun scripts/lint.ts",
 		"check": "prettier --check ."
