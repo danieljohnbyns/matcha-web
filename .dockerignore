@@ -1,0 +1,12 @@
+node_modules
+dist
+.git
+.github
+.vscode
+.tanstack
+README.md
+Design.md
+.prettierrc
+.prettierignore
+eslint.config.ts
+*.log
