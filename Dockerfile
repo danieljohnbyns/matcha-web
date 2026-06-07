@@ -18,4 +18,7 @@ ARG START_COMMAND="bun run preview"
 RUN echo "${START_COMMAND}" > /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 
+# Expose the default port for TanStack Start
+EXPOSE 3000
+
 ENTRYPOINT ["sh", "-c", "/app/entrypoint.sh"]
