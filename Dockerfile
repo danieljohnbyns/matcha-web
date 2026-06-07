@@ -1,36 +1,43 @@
-# ---------- Build stage ----------
-FROM oven/bun:latest AS builder
+# ---- Base Stage: Common Setup ----
+FROM oven/bun:1 AS base
 WORKDIR /app
 
-COPY package.json bun.lock ./
-ARG SETUP_COMMAND="bun install --frozen-lockfile"
-RUN ${SETUP_COMMAND}
+# ---- Dependencies Stage: Install and Cache Modules ----
+FROM base AS deps
+# Copy dependency manifests first for better layer caching
+COPY package.json bun.lockb ./
+# Install all dependencies (including dev) needed for the build step
+RUN bun install --frozen-lockfile
 
+# ---- Builder Stage: Build the Application ----
+FROM base AS builder
+# Copy installed modules and source code from the previous stage
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-ARG BUILD_COMMAND="bun run build"
-RUN ${BUILD_COMMAND}
+# Build the TanStack Start application
+RUN bun run build
 
-# ---------- Runtime stage ----------
-FROM oven/bun:latest
+# ---- Production Stage: Final Runtime Image ----
+FROM base AS runner
 WORKDIR /app
 
-# Copy build output and ensure ownership by 'bun' user
-COPY --from=builder --chown=bun:bun /app/dist ./dist
-COPY --from=builder --chown=bun:bun /app/package.json ./
-
-# Set environment variables
+# Set the environment to production
 ENV NODE_ENV=production
-ENV PORT=3010
 
-# Fix: EXPOSE should only contain the port number
-EXPOSE 3010
+# Create a non-root user for security
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 bunjs
 
-# Use the non-root 'bun' user
-USER bun
+# Copy necessary artifacts from the builder stage
+COPY --from=builder --chown=bunjs:nodejs /app/dist ./dist
+COPY --from=builder --chown=bunjs:nodejs /app/package.json ./package.json
+COPY --from=builder --chown=bunjs:nodejs /app/server.ts ./server.ts
 
-# Start the application
-ARG START_COMMAND="bun run start"
-ENV START_COMMAND=${START_COMMAND}
+# Switch to the non-root user
+USER bunjs
 
-# Use exec to ensure signals (like SIGTERM) are handled correctly by the process
-CMD ["sh", "-c", "exec ${START_COMMAND}"]
+# Expose the port your app will listen on
+EXPOSE 3000
+
+# Run the custom Bun server script
+CMD ["bun", "run", "server.ts"]
