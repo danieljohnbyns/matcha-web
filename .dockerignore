@@ -1,0 +1,10 @@
+node_modules
+dist
+.output
+.tanstack
+.vscode
+.git
+.gitignore
+.dockerignore
+README.md
+Dockerfile

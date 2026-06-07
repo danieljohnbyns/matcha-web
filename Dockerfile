@@ -14,13 +14,23 @@ RUN ${BUILD_COMMAND}
 FROM oven/bun:latest
 WORKDIR /app
 
-COPY --from=builder /app/.output ./.output
-COPY --from=builder /app/package.json ./
+# Copy build output and ensure ownership by 'bun' user
+COPY --from=builder --chown=bun:bun /app/dist ./dist
+COPY --from=builder --chown=bun:bun /app/package.json ./
 
+# Set environment variables
+ENV NODE_ENV=production
+ENV PORT=3000
+
+# Fix: EXPOSE should only contain the port number
+EXPOSE 3000
+
+# Use the non-root 'bun' user
+USER bun
+
+# Start the application
 ARG START_COMMAND="bun run start"
-RUN echo "${START_COMMAND}" > /app/entrypoint.sh
-RUN chmod +x /app/entrypoint.sh
+ENV START_COMMAND=${START_COMMAND}
 
-EXPOSE 3000:3000
-
-ENTRYPOINT ["sh", "-c", "/app/entrypoint.sh"]
+# Use exec to ensure signals (like SIGTERM) are handled correctly by the process
+CMD ["sh", "-c", "exec ${START_COMMAND}"]
