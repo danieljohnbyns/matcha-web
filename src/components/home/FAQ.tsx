@@ -1,5 +1,6 @@
 import { Collapse } from 'antd';
 import { SectionHeading } from './SectionHeading';
+import { Container } from '#/components';
 
 const faqs = [
 	{
@@ -37,15 +38,15 @@ const faqs = [
 export const FAQ = (): React.JSX.Element => {
 	return (
 		<section className='py-24 bg-warm-white'>
-			<div className='max-w-800px mx-auto px-6'>
+			<Container maxWidth={640}>
 				<SectionHeading
 					title='Frequently Asked Questions'
 					subtitle='Everything you need to know about Matcha.'
 				/>
 				<Collapse
 					accordion
-					bordered={false}
-					className='bg-transparent'
+					ghost
+					className='[&_.ant-collapse-content]:!border-none [&_.ant-collapse-item]:!border-none'
 					items={faqs.map((faq) => ({
 						key: faq.key,
 						label: (
@@ -58,7 +59,7 @@ export const FAQ = (): React.JSX.Element => {
 						)
 					}))}
 				/>
-			</div>
+			</Container>
 		</section>
 	);
 };

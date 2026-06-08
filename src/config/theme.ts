@@ -7,7 +7,7 @@ export const matchaTheme: ThemeConfig = {
 		colorTextBase: '#2D2D2D',
 		borderRadius: 8,
 		fontFamily:
-			'-apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, \'Helvetica Neue\', Arial, sans-serif'
+			'\'Geist Variable\', -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, \'Helvetica Neue\', Arial, sans-serif'
 	},
 	components: {
 		Button: {

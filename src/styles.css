@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/geist';
 
 @theme {
 	--color-matcha: #004450;
@@ -8,6 +9,7 @@
 	--color-charcoal: #2d2d2d;
 	--color-warm-gray: #6b6b6b;
 	--color-border: #e0ddd6;
+	--color-black: #000000;
 }
 
 * {
@@ -22,9 +24,8 @@ body,
 
 body {
 	margin: 0;
-	font-family:
-		-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
-		Arial, sans-serif;
+	font-family: 'Geist Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+		Roboto, 'Helvetica Neue', Arial, sans-serif;
 	color: var(--color-charcoal);
 	background-color: var(--color-warm-white);
 	line-height: 1.7;

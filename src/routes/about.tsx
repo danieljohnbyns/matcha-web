@@ -1,67 +1,36 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { Card } from 'antd';
-import {
-	HeartOutlined,
-	SafetyOutlined,
-	TeamOutlined,
-	ThunderboltOutlined
-} from '@ant-design/icons';
-
-const values = [
-	{
-		icon: <HeartOutlined className='text-2xl text-matcha' />,
-		title: 'Community First',
-		description:
-			'We believe in the power of genuine connections between service providers and clients.'
-	},
-	{
-		icon: <ThunderboltOutlined className='text-2xl text-matcha' />,
-		title: 'Simplicity',
-		description:
-			'Tools should make your life easier, not more complicated. We keep things intuitive.'
-	},
-	{
-		icon: <SafetyOutlined className='text-2xl text-matcha' />,
-		title: 'Trust',
-		description:
-			'Every interaction on Matcha is built on transparency and reliability.'
-	},
-	{
-		icon: <TeamOutlined className='text-2xl text-matcha' />,
-		title: 'Empowerment',
-		description:
-			'We exist to help independent service providers thrive on their own terms.'
-	}
-];
+import { Container } from '#/components';
 
 const About = () => {
 	return (
 		<div>
 			{/* Mission */}
 			<section className='py-24 bg-warm-white'>
-				<div className='max-w-800px mx-auto px-6 text-center'>
-					<h1 className='text-4xl md:text-5xl font-bold text-charcoal'>
+				<Container maxWidth={800}>
+					<div className='text-center'>
+						<h1 className='text-4xl md:text-5xl font-bold text-charcoal'>
 						About Matcha
-					</h1>
-					<p className='text-warm-gray text-lg mt-6'>
+						</h1>
+						<p className='text-warm-gray text-lg mt-6'>
 						We noticed that service providers — hairstylists,
 						photographers, tutors, fitness coaches, and countless
 						others — were juggling multiple apps just to manage
 						their business. Booking here, messaging there,
 						showcasing work somewhere else.
-					</p>
-					<p className='text-warm-gray text-lg mt-4'>
+						</p>
+						<p className='text-warm-gray text-lg mt-4'>
 						Matcha brings it all together in one beautiful, simple
 						platform. Built by people who understand the hustle of
 						running a service business, for people who do it every
 						day.
-					</p>
-				</div>
+						</p>
+					</div>
+				</Container>
 			</section>
 
-			{/* Values */}
+			{/* Values
 			<section className='py-24 bg-white'>
-				<div className='max-w-1200px mx-auto px-6'>
+				<Container>
 					<h2 className='text-3xl md:text-4xl font-bold text-charcoal text-center mb-16'>
 						Our Values
 					</h2>
@@ -82,12 +51,13 @@ const About = () => {
 							</Card>
 						))}
 					</div>
-				</div>
+				</Container>
 			</section>
+			*/}
 
-			{/* Team */}
+			{/* Team
 			<section className='py-24 bg-warm-white'>
-				<div className='max-w-1200px mx-auto px-6'>
+				<Container>
 					<h2 className='text-3xl md:text-4xl font-bold text-charcoal text-center mb-16'>
 						Our Team
 					</h2>
@@ -114,8 +84,9 @@ const About = () => {
 							</Card>
 						))}
 					</div>
-				</div>
+				</Container>
 			</section>
+			*/}
 		</div>
 	);
 };

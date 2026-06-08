@@ -1,5 +1,6 @@
 import React from 'react';
 import { SectionHeading } from './SectionHeading';
+import { Container } from '#/components';
 
 const steps = [
 	{
@@ -25,7 +26,7 @@ const steps = [
 export const HowItWorks = (): React.JSX.Element => {
 	return (
 		<section className='py-24 bg-warm-white'>
-			<div className='max-w-1200px mx-auto px-6'>
+			<Container>
 				<SectionHeading
 					title='How It Works'
 					subtitle='Get started in three simple steps.'
@@ -43,7 +44,7 @@ export const HowItWorks = (): React.JSX.Element => {
 						</div>
 					))}
 				</div>
-			</div>
+			</Container>
 		</section>
 	);
 };
