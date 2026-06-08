@@ -45,8 +45,8 @@ COPY --from=builder --chown=bun:bun /app/server.ts ./server.ts
 USER bun
 
 # The port is dynamic via Env Vars
-ENV PORT=3058
-EXPOSE 3058
+ENV PORT=80
+EXPOSE 80
 
 # Start the Custom Bun Server
 CMD ["bun", "server.ts"]
