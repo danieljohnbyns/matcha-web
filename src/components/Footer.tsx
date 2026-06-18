@@ -20,7 +20,7 @@ export const Footer = (): React.JSX.Element => {
 						</p>
 						<div className='mt-4 flex items-center gap-3'>
 							<a
-								href='#'
+								href='https://www.instagram.com/matcha.work/'
 								target='_blank'
 								rel='noopener noreferrer'
 								className='bg-matcha text-white p-2.5 rounded-[5px] transition-colors hover:bg-matcha-dark'
@@ -28,7 +28,7 @@ export const Footer = (): React.JSX.Element => {
 								<Instagram size={20} />
 							</a>
 							<a
-								href='#'
+								href='https://www.facebook.com/profile.php?id=61580076397268'
 								target='_blank'
 								rel='noopener noreferrer'
 								className='bg-matcha text-white p-2.5 rounded-[5px] transition-colors hover:bg-matcha-dark'
@@ -38,7 +38,7 @@ export const Footer = (): React.JSX.Element => {
 								</svg>
 							</a>
 							<a
-								href='#'
+								href='https://www.tiktok.com/@matcha.work'
 								target='_blank'
 								rel='noopener noreferrer'
 								className='bg-matcha text-white p-2.5 rounded-[5px] transition-colors hover:bg-matcha-dark'

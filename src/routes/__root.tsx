@@ -50,12 +50,29 @@ export const Route = createRootRoute({
 			},
 			{
 				title: 'Matcha — Trusted Services.'
+			},
+			{
+				name: 'theme-color',
+				content: '#004450'
 			}
 		],
 		links: [
 			{
 				rel: 'stylesheet',
 				href: appCss
+			},
+			{
+				rel: 'icon',
+				type: 'image/png',
+				href: '/icon.png'
+			},
+			{
+				rel: 'apple-touch-icon',
+				href: '/icon.png'
+			},
+			{
+				rel: 'manifest',
+				href: '/manifest.json'
 			}
 		]
 	}),
