@@ -80,6 +80,18 @@ export const Footer = (): React.JSX.Element => {
 						>
 							Feedback
 						</Link>
+						<Link
+							to='/privacy'
+							className='text-warm-gray hover:text-matcha no-underline text-sm'
+						>
+							Privacy Policy
+						</Link>
+						<Link
+							to='/terms'
+							className='text-warm-gray hover:text-matcha no-underline text-sm'
+						>
+							Terms &amp; Conditions
+						</Link>
 					</div>
 				</div>
 			</Container>

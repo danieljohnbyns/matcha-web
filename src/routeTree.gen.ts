@@ -9,15 +9,27 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as RolesRouteImport } from './routes/roles'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as DownloadRouteImport } from './routes/download'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RolesRoute = RolesRouteImport.update({
   id: '/roles',
   path: '/roles',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FeedbackRoute = FeedbackRouteImport.update({
@@ -46,14 +58,18 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/download': typeof DownloadRoute
   '/feedback': typeof FeedbackRoute
+  '/privacy': typeof PrivacyRoute
   '/roles': typeof RolesRoute
+  '/terms': typeof TermsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/download': typeof DownloadRoute
   '/feedback': typeof FeedbackRoute
+  '/privacy': typeof PrivacyRoute
   '/roles': typeof RolesRoute
+  '/terms': typeof TermsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -61,14 +77,38 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/download': typeof DownloadRoute
   '/feedback': typeof FeedbackRoute
+  '/privacy': typeof PrivacyRoute
   '/roles': typeof RolesRoute
+  '/terms': typeof TermsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/download' | '/feedback' | '/roles'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/download'
+    | '/feedback'
+    | '/privacy'
+    | '/roles'
+    | '/terms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/download' | '/feedback' | '/roles'
-  id: '__root__' | '/' | '/about' | '/download' | '/feedback' | '/roles'
+  to:
+    | '/'
+    | '/about'
+    | '/download'
+    | '/feedback'
+    | '/privacy'
+    | '/roles'
+    | '/terms'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/download'
+    | '/feedback'
+    | '/privacy'
+    | '/roles'
+    | '/terms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,16 +116,32 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   DownloadRoute: typeof DownloadRoute
   FeedbackRoute: typeof FeedbackRoute
+  PrivacyRoute: typeof PrivacyRoute
   RolesRoute: typeof RolesRoute
+  TermsRoute: typeof TermsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/roles': {
       id: '/roles'
       path: '/roles'
       fullPath: '/roles'
       preLoaderRoute: typeof RolesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/feedback': {
@@ -124,7 +180,9 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   DownloadRoute: DownloadRoute,
   FeedbackRoute: FeedbackRoute,
+  PrivacyRoute: PrivacyRoute,
   RolesRoute: RolesRoute,
+  TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
