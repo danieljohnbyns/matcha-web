@@ -11,8 +11,12 @@ const RouteComponent = () => {
 					title='Your email has been verified!'
 					subTitle='Thank you for verifying your email address.'
 					extra={[
-						<Button type='primary' key='download' href='/download'>
-							Get the App
+						<Button
+							type='primary'
+							key='app'
+							href='com.matchaservice.matcha://'
+						>
+							Open the App
 						</Button>
 					]}
 				/>
