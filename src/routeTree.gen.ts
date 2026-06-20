@@ -13,6 +13,7 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as RolesRouteImport } from './routes/roles'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as FeedbackRouteImport } from './routes/feedback'
+import { Route as EmailVerifiedRouteImport } from './routes/email-verified'
 import { Route as DownloadRouteImport } from './routes/download'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -37,6 +38,11 @@ const FeedbackRoute = FeedbackRouteImport.update({
   path: '/feedback',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EmailVerifiedRoute = EmailVerifiedRouteImport.update({
+  id: '/email-verified',
+  path: '/email-verified',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DownloadRoute = DownloadRouteImport.update({
   id: '/download',
   path: '/download',
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/download': typeof DownloadRoute
+  '/email-verified': typeof EmailVerifiedRoute
   '/feedback': typeof FeedbackRoute
   '/privacy': typeof PrivacyRoute
   '/roles': typeof RolesRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/download': typeof DownloadRoute
+  '/email-verified': typeof EmailVerifiedRoute
   '/feedback': typeof FeedbackRoute
   '/privacy': typeof PrivacyRoute
   '/roles': typeof RolesRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/download': typeof DownloadRoute
+  '/email-verified': typeof EmailVerifiedRoute
   '/feedback': typeof FeedbackRoute
   '/privacy': typeof PrivacyRoute
   '/roles': typeof RolesRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/download'
+    | '/email-verified'
     | '/feedback'
     | '/privacy'
     | '/roles'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/download'
+    | '/email-verified'
     | '/feedback'
     | '/privacy'
     | '/roles'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/download'
+    | '/email-verified'
     | '/feedback'
     | '/privacy'
     | '/roles'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   DownloadRoute: typeof DownloadRoute
+  EmailVerifiedRoute: typeof EmailVerifiedRoute
   FeedbackRoute: typeof FeedbackRoute
   PrivacyRoute: typeof PrivacyRoute
   RolesRoute: typeof RolesRoute
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FeedbackRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/email-verified': {
+      id: '/email-verified'
+      path: '/email-verified'
+      fullPath: '/email-verified'
+      preLoaderRoute: typeof EmailVerifiedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/download': {
       id: '/download'
       path: '/download'
@@ -179,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   DownloadRoute: DownloadRoute,
+  EmailVerifiedRoute: EmailVerifiedRoute,
   FeedbackRoute: FeedbackRoute,
   PrivacyRoute: PrivacyRoute,
   RolesRoute: RolesRoute,
