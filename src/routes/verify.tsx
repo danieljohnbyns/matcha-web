@@ -14,7 +14,7 @@ const RouteComponent = () => {
 						<Button
 							type='primary'
 							key='app'
-							href='com.matchaservice.matcha://'
+							href='com.matchaservice.work://'
 						>
 							Open the App
 						</Button>
