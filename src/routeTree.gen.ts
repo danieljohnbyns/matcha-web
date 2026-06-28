@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as DeleteRequestImport } from './routes/delete-request'
 import { Route as VerifyRouteImport } from './routes/verify'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as RolesRouteImport } from './routes/roles'
@@ -18,6 +19,11 @@ import { Route as DownloadRouteImport } from './routes/download'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const DeleteRequestRoute = DeleteRequestImport.update({
+  id: '/delete-request',
+  path: '/delete-request',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VerifyRoute = VerifyRouteImport.update({
   id: '/verify',
   path: '/verify',
@@ -62,6 +68,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/delete-request': typeof DeleteRequestRoute
   '/download': typeof DownloadRoute
   '/feedback': typeof FeedbackRoute
   '/privacy': typeof PrivacyRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/delete-request': typeof DeleteRequestRoute
   '/download': typeof DownloadRoute
   '/feedback': typeof FeedbackRoute
   '/privacy': typeof PrivacyRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/delete-request': typeof DeleteRequestRoute
   '/download': typeof DownloadRoute
   '/feedback': typeof FeedbackRoute
   '/privacy': typeof PrivacyRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/delete-request'
     | '/download'
     | '/feedback'
     | '/privacy'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/delete-request'
     | '/download'
     | '/feedback'
     | '/privacy'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/delete-request'
     | '/download'
     | '/feedback'
     | '/privacy'
@@ -126,6 +138,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  DeleteRequestRoute: typeof DeleteRequestRoute
   DownloadRoute: typeof DownloadRoute
   FeedbackRoute: typeof FeedbackRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -136,6 +149,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/delete-request': {
+      id: '/delete-request'
+      path: '/delete-request'
+      fullPath: '/delete-request'
+      preLoaderRoute: typeof DeleteRequestImport
+      parentRoute: typeof rootRouteImport
+    }
     '/verify': {
       id: '/verify'
       path: '/verify'
@@ -198,6 +218,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  DeleteRequestRoute: DeleteRequestRoute,
   DownloadRoute: DownloadRoute,
   FeedbackRoute: FeedbackRoute,
   PrivacyRoute: PrivacyRoute,
