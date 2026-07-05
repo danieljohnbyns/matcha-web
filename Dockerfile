@@ -8,7 +8,7 @@ WORKDIR /app
 
 # Install dependencies (cached layer)
 COPY package.json bun.lock ./
-RUN bun install --frozen-lockfile
+RUN bun install --frozen-lockfile --no-cache
 
 # Copy the source code
 COPY . .
