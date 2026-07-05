@@ -9,21 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as DeleteRequestImport } from './routes/delete-request'
 import { Route as VerifyRouteImport } from './routes/verify'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as RolesRouteImport } from './routes/roles'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as DownloadRouteImport } from './routes/download'
+import { Route as DeleteRequestRouteImport } from './routes/delete-request'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
-const DeleteRequestRoute = DeleteRequestImport.update({
-  id: '/delete-request',
-  path: '/delete-request',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const VerifyRoute = VerifyRouteImport.update({
   id: '/verify',
   path: '/verify',
@@ -52,6 +47,11 @@ const FeedbackRoute = FeedbackRouteImport.update({
 const DownloadRoute = DownloadRouteImport.update({
   id: '/download',
   path: '/download',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeleteRequestRoute = DeleteRequestRouteImport.update({
+  id: '/delete-request',
+  path: '/delete-request',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -149,13 +149,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/delete-request': {
-      id: '/delete-request'
-      path: '/delete-request'
-      fullPath: '/delete-request'
-      preLoaderRoute: typeof DeleteRequestImport
-      parentRoute: typeof rootRouteImport
-    }
     '/verify': {
       id: '/verify'
       path: '/verify'
@@ -196,6 +189,13 @@ declare module '@tanstack/react-router' {
       path: '/download'
       fullPath: '/download'
       preLoaderRoute: typeof DownloadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/delete-request': {
+      id: '/delete-request'
+      path: '/delete-request'
+      fullPath: '/delete-request'
+      preLoaderRoute: typeof DeleteRequestRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
