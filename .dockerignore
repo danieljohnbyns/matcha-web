@@ -1,4 +1,5 @@
 node_modules
+dist
 Dockerfile
 .dockerignore
 .git
@@ -6,5 +7,16 @@ Dockerfile
 .env
 .env.local
 README.md
+Design.md
 .idea
+.vscode
+.github
+.tanstack
 coverage
+scripts
+tsconfig.json
+eslint.config.ts
+.prettierrc
+.prettierignore
+prettier.config.js
+resources
