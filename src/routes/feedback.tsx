@@ -6,12 +6,10 @@ import {
 	Input,
 	Result,
 	Select,
-	Typography,
 	message
 } from 'antd';
+import { Sparkles, MessageSquareHeart } from 'lucide-react';
 import { Container } from '#/components';
-
-const { Title, Paragraph } = Typography;
 
 const API_BASE = 'https://api.matchaservice.com';
 
@@ -55,31 +53,50 @@ const RouteComponent = () => {
 
 	if (submitted)
 		return (
-			<section className='py-24 bg-warm-white min-h-[80vh] flex items-center'>
-				<Container>
-					<Result
-						status='success'
-						title='Thank You!'
-						subTitle='Your feedback has been received. We appreciate you taking the time to help us improve Matcha.'
-					/>
+			<section className='relative py-24 md:py-32 gradient-bg-hero min-h-[85vh] flex items-center overflow-hidden'>
+				<Container maxWidth={600}>
+					<div className='glass-card p-10 rounded-3xl border border-border/80 shadow-2xl text-center bg-white/90'>
+						<Result
+							status='success'
+							title={<span className='text-2xl font-extrabold text-charcoal'>Thank You!</span>}
+							subTitle={<span className='text-warm-gray text-base'>Your feedback has been received. We appreciate you taking the time to help us improve Matcha!</span>}
+						/>
+					</div>
 				</Container>
 			</section>
 		);
 
 	return (
-		<section className='py-24 bg-warm-white min-h-[80vh] flex items-center'>
-			<Container>
-				<div className='max-w-lg mx-auto'>
-					<Title level={2} className='text-center'>
-						We Value Your Feedback
-					</Title>
-					<Paragraph className='text-center text-warm-gray mb-8'>
-						Help us improve Matcha by sharing your thoughts,
-						suggestions, or reporting any issues you have
-						encountered.
-					</Paragraph>
+		<section className='relative py-24 md:py-32 gradient-bg-hero min-h-[85vh] flex items-center overflow-hidden'>
+			<div className='glow-sage-blob w-[500px] h-[500px] top-1/3 left-1/2 -translate-x-1/2' />
 
-					<div className='bg-white p-8 rounded-lg border border-border'>
+			<Container maxWidth={680}>
+				<div className='relative z-10 max-w-xl mx-auto'>
+					{/* Header */}
+					<div className='text-center mb-10'>
+						<div className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-matcha-light/80 border border-matcha/20 text-matcha text-xs font-semibold mb-4 shadow-xs'>
+							<Sparkles size={16} />
+							<span>We're Listening</span>
+						</div>
+						<h1 className='text-3xl sm:text-4xl font-extrabold text-charcoal tracking-tight mb-3'>
+							We Value Your <span className='gradient-text-matcha'>Feedback</span>
+						</h1>
+						<p className='text-warm-gray text-base leading-relaxed'>
+							Help us improve Matcha by sharing your thoughts, suggestions, or reporting issues.
+						</p>
+					</div>
+
+					<div className='glass-card p-8 sm:p-10 rounded-3xl border border-border/80 shadow-2xl bg-white/95'>
+						<div className='flex items-center gap-3 mb-6 pb-4 border-b border-border/40'>
+							<div className='w-10 h-10 rounded-xl bg-matcha-light flex items-center justify-center text-matcha'>
+								<MessageSquareHeart size={20} />
+							</div>
+							<div>
+								<h3 className='text-base font-bold text-charcoal m-0'>Send Us a Message</h3>
+								<p className='text-xs text-warm-gray m-0'>All responses go straight to our product team.</p>
+							</div>
+						</div>
+
 						<Form
 							layout='vertical'
 							onFinish={handleSubmit}
@@ -87,7 +104,7 @@ const RouteComponent = () => {
 							requiredMark={false}
 						>
 							<Form.Item
-								label='Name'
+								label={<span className='font-semibold text-charcoal text-xs'>Your Name</span>}
 								name='name'
 								rules={[
 									{
@@ -99,11 +116,12 @@ const RouteComponent = () => {
 								<Input
 									placeholder='Your name'
 									size='large'
+									className='!rounded-xl !h-12 !border-border'
 								/>
 							</Form.Item>
 
 							<Form.Item
-								label='Email'
+								label={<span className='font-semibold text-charcoal text-xs'>Email Address</span>}
 								name='email'
 								rules={[
 									{
@@ -116,22 +134,24 @@ const RouteComponent = () => {
 								<Input
 									placeholder='you@example.com'
 									size='large'
+									className='!rounded-xl !h-12 !border-border'
 								/>
 							</Form.Item>
 
 							<Form.Item
-								label='Category'
+								label={<span className='font-semibold text-charcoal text-xs'>Feedback Category</span>}
 								name='category'
 								initialValue='general'
 							>
 								<Select
 									options={CATEGORIES}
 									size='large'
+									className='[&_.ant-select-selector]:!rounded-xl [&_.ant-select-selector]:!h-12 [&_.ant-select-selection-item]:!leading-[46px]'
 								/>
 							</Form.Item>
 
 							<Form.Item
-								label='Message'
+								label={<span className='font-semibold text-charcoal text-xs'>Message</span>}
 								name='message'
 								rules={[
 									{
@@ -147,17 +167,19 @@ const RouteComponent = () => {
 							>
 								<Input.TextArea
 									placeholder='Tell us what is on your mind...'
-									rows={6}
+									rows={5}
+									className='!rounded-xl !border-border'
 								/>
 							</Form.Item>
 
-							<Form.Item className='mt-6'>
+							<Form.Item className='mt-6 mb-0'>
 								<Button
 									type='primary'
 									htmlType='submit'
 									loading={loading}
 									block
 									size='large'
+									className='!bg-matcha hover:!bg-matcha-dark !h-14 !rounded-2xl !font-bold !text-base !shadow-md'
 								>
 									Submit Feedback
 								</Button>
