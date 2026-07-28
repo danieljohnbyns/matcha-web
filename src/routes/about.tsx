@@ -1,4 +1,3 @@
-import React from 'react';
 import { createFileRoute } from '@tanstack/react-router';
 import { Shield, Users, HeartHandshake, Sparkles } from 'lucide-react';
 import { Container } from '#/components';
@@ -34,25 +33,25 @@ const team = [
 	{
 		name: 'Gab Dotado',
 		role: 'Founder, CEO',
-		bio: 'Shapes the company’s vision and GTM strategy while leading execution. He has delivered PW4 MVPs, built a trust system, won the 3× Startup Builder HubIT Prize, and was recognized as a 2024 Global Semi-Finalist.',
+		bio: 'Shapes vision & GTM strategy, delivered PW4 MVPs, built a trust system, won 3× HubIT Prize, and was a 2024 Global Semi-Finalist.',
 		initials: 'GD'
 	},
 	{
 		name: 'Daniel Baynosa',
 		role: 'Founder, CTO',
-		bio: 'Leads the technical direction of the platform with over 8 years of full-stack web and mobile development experience. He is an Alibaba Cloud & Inventa Hackathon 2025 finalist and holds a BS in Information Technology.',
+		bio: 'Leads technical direction with 8+ years full-stack experience. Alibaba Cloud & Inventa Hackathon 2025 finalist, BS IT.',
 		initials: 'DB'
 	},
 	{
 		name: 'Azzy Abrencillo',
 		role: 'Founder, COO',
-		bio: 'Oversees GTM distribution, outreach, and user acquisition through community and social channels. She also designs behavioral trust-scoring systems and incentive mechanics.',
+		bio: 'Oversees GTM, outreach, and user acquisition. Designs behavioral trust-scoring and incentive systems.',
 		initials: 'AA'
 	},
 	{
 		name: 'Kenneth Gonzales',
 		role: 'Founder, CPO',
-		bio: 'Drives product strategy by designing intuitive user experiences and scalable platform features. He has built full-stack AI applications, worked as a Systems Engineer at Power MAC, and earned a BS in Computer Engineering.',
+		bio: 'Drives product strategy and UX. Built full-stack AI apps, Systems Engineer at Power MAC, BS Computer Engineering.',
 		initials: 'KG'
 	}
 ];
@@ -128,7 +127,7 @@ const About = () => {
 						</p>
 					</div>
 
-					<div className='grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto'>
+					<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
 						{team.map((member) => (
 							<div
 								key={member.name}
