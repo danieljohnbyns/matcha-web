@@ -3,10 +3,10 @@ FROM oven/bun:alpine AS build
 WORKDIR /build
 
 # Install dependencies
-COPY package.json bun.lockb* ./
+COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
-# Copy source and build Nitro production target
+# Copy source and build
 COPY . .
 RUN bun run build
 
@@ -21,10 +21,11 @@ ENV PORT=80
 RUN adduser -D appuser
 USER appuser
 
-# Copy compiled Nitro server output
-COPY --from=build --chown=appuser:appuser /build/.output /app/.output
+# Copy compiled TanStack Start output
+COPY --from=build --chown=appuser:appuser /build/dist /app/dist
+COPY --from=build --chown=appuser:appuser /build/server.ts /app/server.ts
 
 EXPOSE 80
 
 # Execute using Bun runtime
-CMD ["bun", "/app/.output/server/index.mjs"]
+CMD ["bun", "server.ts"]
