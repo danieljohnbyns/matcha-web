@@ -32,22 +32,28 @@ const values = [
 
 const team = [
 	{
-		name: 'Alex Rivera',
-		role: 'Founder & CEO',
-		bio: 'Passionate about empowering independent service professionals.',
-		initials: 'AR'
+		name: 'Gab Dotado',
+		role: 'Founder, CEO',
+		bio: 'Shapes the company’s vision and GTM strategy while leading execution. He has delivered PW4 MVPs, built a trust system, won the 3× Startup Builder HubIT Prize, and was recognized as a 2024 Global Semi-Finalist.',
+		initials: 'GD'
 	},
 	{
-		name: 'Samira Chen',
-		role: 'Lead Product Designer',
-		bio: 'Crafting warm, intuitive digital experiences for everyday people.',
-		initials: 'SC'
+		name: 'Daniel Baynosa',
+		role: 'Founder, CTO',
+		bio: 'Leads the technical direction of the platform with over 8 years of full-stack web and mobile development experience. He is an Alibaba Cloud & Inventa Hackathon 2025 finalist and holds a BS in Information Technology.',
+		initials: 'DB'
 	},
 	{
-		name: 'Jordan Vance',
-		role: 'Head of Engineering',
-		bio: 'Building fast, reliable real-time messaging and scheduling tech.',
-		initials: 'JV'
+		name: 'Azzy Abrencillo',
+		role: 'Founder, COO',
+		bio: 'Oversees GTM distribution, outreach, and user acquisition through community and social channels. She also designs behavioral trust-scoring systems and incentive mechanics.',
+		initials: 'AA'
+	},
+	{
+		name: 'Kenneth Gonzales',
+		role: 'Founder, CPO',
+		bio: 'Drives product strategy by designing intuitive user experiences and scalable platform features. He has built full-stack AI applications, worked as a Systems Engineer at Power MAC, and earned a BS in Computer Engineering.',
+		initials: 'KG'
 	}
 ];
 
