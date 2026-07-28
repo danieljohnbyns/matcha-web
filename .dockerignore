@@ -12,6 +12,8 @@ Design.md
 .vscode
 .github
 .tanstack
+.output
+.vinxi
 coverage
 scripts
 tsconfig.json
