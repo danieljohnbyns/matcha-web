@@ -21,7 +21,6 @@ COPY . .
 # Build the app
 RUN bun run build
 
-
 # =============================================
 # Stage 2: Runner (Production)
 # =============================================
@@ -32,15 +31,15 @@ ENV NODE_ENV=production
 # Install curl for healthchecks
 RUN apk add --no-cache curl
 
-# Copy package files
+# Copy package files and install ONLY production deps
 COPY package.json bun.lock ./
-
-# Install ONLY production deps
 RUN bun install --production
 
-# Copy the build artifacts from the Builder stage
+# Copy the built assets from the Builder stage
 COPY --from=builder --chown=bun:bun /app/dist ./dist
-COPY --from=builder --chown=bun:bun /app/server.ts ./server.ts
+
+# ✅ Use the compiled server entry point (no need for server.ts)
+COPY --from=builder --chown=bun:bun /app/dist/server/server.js ./server.js
 
 USER bun
 
@@ -48,5 +47,5 @@ USER bun
 ENV PORT=80
 EXPOSE 80
 
-# Start the Custom Bun Server
-CMD ["bun", "server.ts"]
+# Start the compiled server
+CMD ["bun", "server.js"]
