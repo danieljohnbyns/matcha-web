@@ -21,8 +21,9 @@ ENV PORT=80
 RUN adduser -D appuser
 USER appuser
 
-# Copy compiled TanStack Start output
+# Copy compiled TanStack Start output and runtime dependencies
 COPY --from=build --chown=appuser:appuser /build/dist /app/dist
+COPY --from=build --chown=appuser:appuser /build/node_modules /app/node_modules
 COPY --from=build --chown=appuser:appuser /build/server.ts /app/server.ts
 
 EXPOSE 80
