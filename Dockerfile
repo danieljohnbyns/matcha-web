@@ -35,11 +35,8 @@ RUN apk add --no-cache curl
 COPY package.json bun.lock ./
 RUN bun install --production
 
-# Copy the built assets from the Builder stage
+# Copy the entire build output (including the server and its assets)
 COPY --from=builder --chown=bun:bun /app/dist ./dist
-
-# ✅ Use the compiled server entry point (no need for server.ts)
-COPY --from=builder --chown=bun:bun /app/dist/server/server.js ./server.js
 
 USER bun
 
@@ -47,5 +44,5 @@ USER bun
 ENV PORT=80
 EXPOSE 80
 
-# Start the compiled server
-CMD ["bun", "server.js"]
+# Start the compiled server from its original location
+CMD ["bun", "dist/server/server.js"]
