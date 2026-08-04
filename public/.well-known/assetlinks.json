@@ -4,7 +4,10 @@
     "target": {
       "namespace": "android_app",
       "package_name": "com.matchaservice.work",
-      "sha256_cert_fingerprints": ["AF38BD74DEA9BC69AC67B527E0E3FD1E635EE40007D3E663A934E3CA2243E13A"]
+      "sha256_cert_fingerprints": [
+        "C7233F5726845449B4EB4FD09800C8BD4461D382FC83A3386193FFCDF8B84A2B",
+        "AF38BD74DEA9BC69AC67B527E0E3FD1E635EE40007D3E663A934E3CA2243E13A"
+      ]
     }
   }
 ]
