@@ -13,6 +13,7 @@ import { Route as VerifyRouteImport } from './routes/verify'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as RolesRouteImport } from './routes/roles'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as InviteRouteImport } from './routes/invite'
 import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as DownloadRouteImport } from './routes/download'
 import { Route as DeleteRequestRouteImport } from './routes/delete-request'
@@ -37,6 +38,11 @@ const RolesRoute = RolesRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InviteRoute = InviteRouteImport.update({
+  id: '/invite',
+  path: '/invite',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FeedbackRoute = FeedbackRouteImport.update({
@@ -71,6 +77,7 @@ export interface FileRoutesByFullPath {
   '/delete-request': typeof DeleteRequestRoute
   '/download': typeof DownloadRoute
   '/feedback': typeof FeedbackRoute
+  '/invite': typeof InviteRoute
   '/privacy': typeof PrivacyRoute
   '/roles': typeof RolesRoute
   '/terms': typeof TermsRoute
@@ -82,6 +89,7 @@ export interface FileRoutesByTo {
   '/delete-request': typeof DeleteRequestRoute
   '/download': typeof DownloadRoute
   '/feedback': typeof FeedbackRoute
+  '/invite': typeof InviteRoute
   '/privacy': typeof PrivacyRoute
   '/roles': typeof RolesRoute
   '/terms': typeof TermsRoute
@@ -94,6 +102,7 @@ export interface FileRoutesById {
   '/delete-request': typeof DeleteRequestRoute
   '/download': typeof DownloadRoute
   '/feedback': typeof FeedbackRoute
+  '/invite': typeof InviteRoute
   '/privacy': typeof PrivacyRoute
   '/roles': typeof RolesRoute
   '/terms': typeof TermsRoute
@@ -107,6 +116,7 @@ export interface FileRouteTypes {
     | '/delete-request'
     | '/download'
     | '/feedback'
+    | '/invite'
     | '/privacy'
     | '/roles'
     | '/terms'
@@ -118,6 +128,7 @@ export interface FileRouteTypes {
     | '/delete-request'
     | '/download'
     | '/feedback'
+    | '/invite'
     | '/privacy'
     | '/roles'
     | '/terms'
@@ -129,6 +140,7 @@ export interface FileRouteTypes {
     | '/delete-request'
     | '/download'
     | '/feedback'
+    | '/invite'
     | '/privacy'
     | '/roles'
     | '/terms'
@@ -141,6 +153,7 @@ export interface RootRouteChildren {
   DeleteRequestRoute: typeof DeleteRequestRoute
   DownloadRoute: typeof DownloadRoute
   FeedbackRoute: typeof FeedbackRoute
+  InviteRoute: typeof InviteRoute
   PrivacyRoute: typeof PrivacyRoute
   RolesRoute: typeof RolesRoute
   TermsRoute: typeof TermsRoute
@@ -175,6 +188,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/invite': {
+      id: '/invite'
+      path: '/invite'
+      fullPath: '/invite'
+      preLoaderRoute: typeof InviteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/feedback': {
@@ -221,6 +241,7 @@ const rootRouteChildren: RootRouteChildren = {
   DeleteRequestRoute: DeleteRequestRoute,
   DownloadRoute: DownloadRoute,
   FeedbackRoute: FeedbackRoute,
+  InviteRoute: InviteRoute,
   PrivacyRoute: PrivacyRoute,
   RolesRoute: RolesRoute,
   TermsRoute: TermsRoute,

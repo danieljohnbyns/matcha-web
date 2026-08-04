@@ -9,7 +9,16 @@ Bun.serve({
 		const url = new URL(request.url);
 		const filepath = path.join('./dist/client', url.pathname);
 		const file = Bun.file(filepath);
-		if (await file.exists()) return new Response(file);
+		if (await file.exists()) {
+			const headers = new Headers();
+			// Universal Link / App Link association files must be served as
+			// JSON for iOS/Android verification to succeed.
+			if (url.pathname.endsWith('/apple-app-site-association'))
+				headers.set('content-type', 'application/json');
+			else if (url.pathname.endsWith('/assetlinks.json'))
+				headers.set('content-type', 'application/json');
+			return new Response(file, { headers });
+		};
 		return server.fetch(request);
 	}
 });
