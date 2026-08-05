@@ -39,7 +39,7 @@ const team = [
 	{
 		name: 'Daniel Baynosa',
 		role: 'Founder, CTO',
-		bio: 'Leads technical direction with 8+ years full-stack experience. Alibaba Cloud & Inventa Hackathon 2025 finalist, BS IT.',
+		bio: 'Leads technical direction with 8+ years full-stack experience. Alibaba Cloud & Inventi Hackathon 2025 finalist, BS IT.',
 		initials: 'DB'
 	},
 	{
