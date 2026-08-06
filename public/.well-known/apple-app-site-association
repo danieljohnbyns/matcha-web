@@ -5,7 +5,9 @@
       {
         "appID": "XMSBD32Z8Q.com.matchaservice.work",
         "paths": [
-          "/invite"
+          "/invite",
+          "/service/*",
+          "/user/*"
         ]
       }
     ]

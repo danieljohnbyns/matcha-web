@@ -1,13 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
-import {
-	Button,
-	Form,
-	Input,
-	Result,
-	Select,
-	message
-} from 'antd';
+import { Button, Form, Input, Result, Select, message } from 'antd';
 import { Sparkles, MessageSquareHeart } from 'lucide-react';
 import { Container } from '#/components';
 
@@ -58,8 +51,18 @@ const RouteComponent = () => {
 					<div className='glass-card p-10 rounded-3xl border border-border/80 shadow-2xl text-center bg-white/90'>
 						<Result
 							status='success'
-							title={<span className='text-2xl font-extrabold text-charcoal'>Thank You!</span>}
-							subTitle={<span className='text-warm-gray text-base'>Your feedback has been received. We appreciate you taking the time to help us improve Matcha!</span>}
+							title={
+								<span className='text-2xl font-extrabold text-charcoal'>
+									Thank You!
+								</span>
+							}
+							subTitle={
+								<span className='text-warm-gray text-base'>
+									Your feedback has been received. We
+									appreciate you taking the time to help us
+									improve Matcha!
+								</span>
+							}
 						/>
 					</div>
 				</Container>
@@ -79,10 +82,14 @@ const RouteComponent = () => {
 							<span>We're Listening</span>
 						</div>
 						<h1 className='text-3xl sm:text-4xl font-extrabold text-charcoal tracking-tight mb-3'>
-							We Value Your <span className='gradient-text-matcha'>Feedback</span>
+							We Value Your{' '}
+							<span className='gradient-text-matcha'>
+								Feedback
+							</span>
 						</h1>
 						<p className='text-warm-gray text-base leading-relaxed'>
-							Help us improve Matcha by sharing your thoughts, suggestions, or reporting issues.
+							Help us improve Matcha by sharing your thoughts,
+							suggestions, or reporting issues.
 						</p>
 					</div>
 
@@ -92,8 +99,13 @@ const RouteComponent = () => {
 								<MessageSquareHeart size={20} />
 							</div>
 							<div>
-								<h3 className='text-base font-bold text-charcoal m-0'>Send Us a Message</h3>
-								<p className='text-xs text-warm-gray m-0'>All responses go straight to our product team.</p>
+								<h3 className='text-base font-bold text-charcoal m-0'>
+									Send Us a Message
+								</h3>
+								<p className='text-xs text-warm-gray m-0'>
+									All responses go straight to our product
+									team.
+								</p>
 							</div>
 						</div>
 
@@ -104,7 +116,11 @@ const RouteComponent = () => {
 							requiredMark={false}
 						>
 							<Form.Item
-								label={<span className='font-semibold text-charcoal text-xs'>Your Name</span>}
+								label={
+									<span className='font-semibold text-charcoal text-xs'>
+										Your Name
+									</span>
+								}
 								name='name'
 								rules={[
 									{
@@ -121,7 +137,11 @@ const RouteComponent = () => {
 							</Form.Item>
 
 							<Form.Item
-								label={<span className='font-semibold text-charcoal text-xs'>Email Address</span>}
+								label={
+									<span className='font-semibold text-charcoal text-xs'>
+										Email Address
+									</span>
+								}
 								name='email'
 								rules={[
 									{
@@ -139,7 +159,11 @@ const RouteComponent = () => {
 							</Form.Item>
 
 							<Form.Item
-								label={<span className='font-semibold text-charcoal text-xs'>Feedback Category</span>}
+								label={
+									<span className='font-semibold text-charcoal text-xs'>
+										Feedback Category
+									</span>
+								}
 								name='category'
 								initialValue='general'
 							>
@@ -151,7 +175,11 @@ const RouteComponent = () => {
 							</Form.Item>
 
 							<Form.Item
-								label={<span className='font-semibold text-charcoal text-xs'>Message</span>}
+								label={
+									<span className='font-semibold text-charcoal text-xs'>
+										Message
+									</span>
+								}
 								name='message'
 								rules={[
 									{

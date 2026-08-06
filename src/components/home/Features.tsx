@@ -97,7 +97,10 @@ export const Features = (): React.JSX.Element => {
 								{/* Title */}
 								<h3 className='text-xl font-bold text-charcoal mb-3 group-hover:text-matcha transition-colors flex items-center gap-1.5'>
 									{feature.title}
-									<ArrowUpRight size={16} className='opacity-0 group-hover:opacity-100 transition-opacity text-matcha' />
+									<ArrowUpRight
+										size={16}
+										className='opacity-0 group-hover:opacity-100 transition-opacity text-matcha'
+									/>
 								</h3>
 
 								{/* Description */}

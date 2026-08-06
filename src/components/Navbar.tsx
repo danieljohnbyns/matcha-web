@@ -69,7 +69,10 @@ export const Navbar = (): React.JSX.Element => {
 										<span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75' />
 										<span className='relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400' />
 									</span>
-									<Sprout size={16} className='text-emerald-200' />
+									<Sprout
+										size={16}
+										className='text-emerald-200'
+									/>
 									<span>Latest Update</span>
 								</button>
 							</div>
@@ -77,7 +80,13 @@ export const Navbar = (): React.JSX.Element => {
 								<Button
 									type='text'
 									className='!w-10 !h-10 !rounded-xl'
-									icon={mobileOpen ? <CloseOutlined className='!text-lg' /> : <MenuOutlined className='!text-lg' />}
+									icon={
+										mobileOpen ? (
+											<CloseOutlined className='!text-lg' />
+										) : (
+											<MenuOutlined className='!text-lg' />
+										)
+									}
 									onClick={() => setMobileOpen(!mobileOpen)}
 									aria-label='Toggle menu'
 								/>
@@ -126,7 +135,10 @@ export const Navbar = (): React.JSX.Element => {
 					</div>
 				)}
 			</nav>
-			<LatestUpdateModal open={isModalOpen} onClose={() => setIsModalOpen(false)} />
+			<LatestUpdateModal
+				open={isModalOpen}
+				onClose={() => setIsModalOpen(false)}
+			/>
 		</>
 	);
 };

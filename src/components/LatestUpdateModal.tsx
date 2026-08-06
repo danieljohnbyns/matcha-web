@@ -25,7 +25,10 @@ interface Props {
 	onClose: () => void;
 }
 
-export const LatestUpdateModal = ({ open, onClose }: Props): React.JSX.Element => {
+export const LatestUpdateModal = ({
+	open,
+	onClose
+}: Props): React.JSX.Element => {
 	const [countdown, setCountdown] = useState<Countdown>(calcCountdown);
 
 	useEffect(() => {
@@ -42,9 +45,17 @@ export const LatestUpdateModal = ({ open, onClose }: Props): React.JSX.Element =
 	];
 
 	return (
-		<Modal open={open} onCancel={onClose} footer={null} width={440} centered>
+		<Modal
+			open={open}
+			onCancel={onClose}
+			footer={null}
+			width={440}
+			centered
+		>
 			<div className='text-center py-6'>
-				<div className='text-4xl font-semibold text-matcha mb-6'>matcha</div>
+				<div className='text-4xl font-semibold text-matcha mb-6'>
+					matcha
+				</div>
 				<p className='text-warm-gray text-base mb-8'>
 					The app is under development. Stay tuned for our launch!
 				</p>
@@ -54,8 +65,12 @@ export const LatestUpdateModal = ({ open, onClose }: Props): React.JSX.Element =
 							key={box.label}
 							className='bg-matcha text-white rounded-lg w-16 h-16 flex flex-col items-center justify-center'
 						>
-							<span className='text-xl font-bold leading-none'>{box.value}</span>
-							<span className='text-[10px] uppercase tracking-wider mt-1'>{box.label}</span>
+							<span className='text-xl font-bold leading-none'>
+								{box.value}
+							</span>
+							<span className='text-[10px] uppercase tracking-wider mt-1'>
+								{box.label}
+							</span>
 						</div>
 					))}
 				</div>

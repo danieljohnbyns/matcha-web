@@ -83,8 +83,13 @@ export const FAQ = (): React.JSX.Element => {
 				{/* Bottom Support CTA Banner */}
 				<div className='mt-12 glass-card p-6 rounded-2xl border border-matcha/20 text-center flex flex-col sm:flex-row items-center justify-between gap-4 bg-gradient-to-r from-matcha-light/60 to-white'>
 					<div className='text-left'>
-						<h4 className='font-bold text-base text-charcoal m-0'>Still have questions or feedback?</h4>
-						<p className='text-xs text-warm-gray m-0 mt-0.5'>We would love to hear from you and help you get started.</p>
+						<h4 className='font-bold text-base text-charcoal m-0'>
+							Still have questions or feedback?
+						</h4>
+						<p className='text-xs text-warm-gray m-0 mt-0.5'>
+							We would love to hear from you and help you get
+							started.
+						</p>
 					</div>
 					<Link
 						to='/feedback'

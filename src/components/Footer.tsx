@@ -8,7 +8,6 @@ export const Footer = (): React.JSX.Element => {
 		<footer className='bg-white border-t border-border/80 relative z-10'>
 			<Container>
 				<div className='flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 py-16'>
-					
 					{/* Brand Column */}
 					<div className='text-center lg:text-left max-w-sm'>
 						<Link
@@ -77,43 +76,89 @@ export const Footer = (): React.JSX.Element => {
 					{/* Navigation Links Columns */}
 					<div className='flex flex-wrap justify-center lg:justify-end gap-10 sm:gap-16 text-center lg:text-left text-sm'>
 						<div>
-							<h5 className='font-bold text-charcoal mb-4 uppercase tracking-wider text-xs'>Platform</h5>
+							<h5 className='font-bold text-charcoal mb-4 uppercase tracking-wider text-xs'>
+								Platform
+							</h5>
 							<ul className='space-y-2.5 p-0 list-none m-0'>
 								<li>
-									<Link to='/' className='text-warm-gray hover:text-matcha no-underline transition-colors'>Home</Link>
+									<Link
+										to='/'
+										className='text-warm-gray hover:text-matcha no-underline transition-colors'
+									>
+										Home
+									</Link>
 								</li>
 								<li>
-									<Link to='/roles' className='text-warm-gray hover:text-matcha no-underline transition-colors'>Roles &amp; Features</Link>
+									<Link
+										to='/roles'
+										className='text-warm-gray hover:text-matcha no-underline transition-colors'
+									>
+										Roles &amp; Features
+									</Link>
 								</li>
 								<li>
-									<Link to='/download' className='text-warm-gray hover:text-matcha no-underline transition-colors'>Download App</Link>
+									<Link
+										to='/download'
+										className='text-warm-gray hover:text-matcha no-underline transition-colors'
+									>
+										Download App
+									</Link>
 								</li>
 							</ul>
 						</div>
 
 						<div>
-							<h5 className='font-bold text-charcoal mb-4 uppercase tracking-wider text-xs'>Company</h5>
+							<h5 className='font-bold text-charcoal mb-4 uppercase tracking-wider text-xs'>
+								Company
+							</h5>
 							<ul className='space-y-2.5 p-0 list-none m-0'>
 								<li>
-									<Link to='/about' className='text-warm-gray hover:text-matcha no-underline transition-colors'>About Us</Link>
+									<Link
+										to='/about'
+										className='text-warm-gray hover:text-matcha no-underline transition-colors'
+									>
+										About Us
+									</Link>
 								</li>
 								<li>
-									<Link to='/feedback' className='text-warm-gray hover:text-matcha no-underline transition-colors'>Feedback</Link>
+									<Link
+										to='/feedback'
+										className='text-warm-gray hover:text-matcha no-underline transition-colors'
+									>
+										Feedback
+									</Link>
 								</li>
 							</ul>
 						</div>
 
 						<div>
-							<h5 className='font-bold text-charcoal mb-4 uppercase tracking-wider text-xs'>Legal</h5>
+							<h5 className='font-bold text-charcoal mb-4 uppercase tracking-wider text-xs'>
+								Legal
+							</h5>
 							<ul className='space-y-2.5 p-0 list-none m-0'>
 								<li>
-									<Link to='/privacy' className='text-warm-gray hover:text-matcha no-underline transition-colors'>Privacy Policy</Link>
+									<Link
+										to='/privacy'
+										className='text-warm-gray hover:text-matcha no-underline transition-colors'
+									>
+										Privacy Policy
+									</Link>
 								</li>
 								<li>
-									<Link to='/terms' className='text-warm-gray hover:text-matcha no-underline transition-colors'>Terms &amp; Conditions</Link>
+									<Link
+										to='/terms'
+										className='text-warm-gray hover:text-matcha no-underline transition-colors'
+									>
+										Terms &amp; Conditions
+									</Link>
 								</li>
 								<li>
-									<Link to='/delete-request' className='text-warm-gray hover:text-matcha no-underline transition-colors'>Delete Account</Link>
+									<Link
+										to='/delete-request'
+										className='text-warm-gray hover:text-matcha no-underline transition-colors'
+									>
+										Delete Account
+									</Link>
 								</li>
 							</ul>
 						</div>
@@ -123,7 +168,10 @@ export const Footer = (): React.JSX.Element => {
 
 			{/* Copyright Bar */}
 			<div className='bg-matcha text-white/90 text-center py-4 text-xs font-medium border-t border-matcha-dark/30 flex items-center justify-center gap-1'>
-				<span>&copy; {new Date().getFullYear()} Matcha. All rights reserved.</span>
+				<span>
+					&copy; {new Date().getFullYear()} Matcha. All rights
+					reserved.
+				</span>
 			</div>
 		</footer>
 	);

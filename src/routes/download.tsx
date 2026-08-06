@@ -10,7 +10,9 @@ const Download = () => {
 	const [submitted, setSubmitted] = useState(false);
 
 	const handleSubmit = (values: { email: string }) => {
-		message.success(`Thanks! We'll notify ${values.email} when Matcha updates!`);
+		message.success(
+			`Thanks! We'll notify ${values.email} when Matcha updates!`
+		);
 		setSubmitted(true);
 		form.resetFields();
 	};
@@ -28,28 +30,35 @@ const Download = () => {
 					</div>
 
 					<h1 className='text-4xl sm:text-5xl lg:text-6xl font-extrabold text-charcoal tracking-tight leading-tight mb-6'>
-						Get <span className='gradient-text-matcha'>Matcha App</span> Today
+						Get{' '}
+						<span className='gradient-text-matcha'>Matcha App</span>{' '}
+						Today
 					</h1>
 					<p className='text-warm-gray text-lg max-w-xl mx-auto mb-12'>
-						Join thousands of service providers building their businesses with confidence.
+						Join thousands of service providers building their
+						businesses with confidence.
 					</p>
 
 					{/* Download Grid: Store Buttons & QR Scanner */}
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 text-left max-w-3xl mx-auto'>
-						
 						{/* Card 1: App Stores */}
 						<div className='glass-card p-8 rounded-3xl border border-border/80 shadow-lg flex flex-col justify-between hover:shadow-xl transition-shadow'>
 							<div>
-								<h3 className='text-xl font-bold text-charcoal mb-2'>Direct Download</h3>
+								<h3 className='text-xl font-bold text-charcoal mb-2'>
+									Direct Download
+								</h3>
 								<p className='text-warm-gray text-xs leading-relaxed mb-6'>
-									Get the native app experience directly on your mobile device.
+									Get the native app experience directly on
+									your mobile device.
 								</p>
 
 								<div className='space-y-3'>
 									<Button
 										type='primary'
 										size='large'
-										icon={<AndroidOutlined className='!text-xl' />}
+										icon={
+											<AndroidOutlined className='!text-xl' />
+										}
 										className='!bg-charcoal hover:!bg-black !border-charcoal w-full !h-14 !rounded-2xl !text-base !font-bold flex items-center justify-center gap-2 !shadow-md hover:!scale-[1.02] transition-transform'
 									>
 										Download for Android
@@ -58,7 +67,9 @@ const Download = () => {
 									<Button
 										type='primary'
 										size='large'
-										icon={<AppleOutlined className='!text-xl' />}
+										icon={
+											<AppleOutlined className='!text-xl' />
+										}
 										className='!bg-matcha hover:!bg-matcha-dark !border-matcha w-full !h-14 !rounded-2xl !text-base !font-bold flex items-center justify-center gap-2 !shadow-md hover:!scale-[1.02] transition-transform'
 									>
 										Download for iOS
@@ -67,22 +78,34 @@ const Download = () => {
 							</div>
 
 							<div className='mt-6 pt-4 border-t border-border/40 text-[11px] text-warm-gray flex items-center gap-1.5'>
-								<CheckCircle2 size={14} className='text-matcha' />
-								<span>Free download • Universal iOS &amp; Android support</span>
+								<CheckCircle2
+									size={14}
+									className='text-matcha'
+								/>
+								<span>
+									Free download • Universal iOS &amp; Android
+									support
+								</span>
 							</div>
 						</div>
 
 						{/* Card 2: QR Scanner */}
 						<div className='glass-card p-8 rounded-3xl border border-border/80 shadow-lg text-center flex flex-col items-center justify-between hover:shadow-xl transition-shadow'>
 							<div>
-								<h3 className='text-xl font-bold text-charcoal mb-2'>Scan to Download</h3>
+								<h3 className='text-xl font-bold text-charcoal mb-2'>
+									Scan to Download
+								</h3>
 								<p className='text-warm-gray text-xs leading-relaxed mb-6'>
-									Point your smartphone camera to auto-detect your store.
+									Point your smartphone camera to auto-detect
+									your store.
 								</p>
 
 								<div className='relative w-44 h-44 bg-white border-2 border-matcha/30 p-4 rounded-2xl mx-auto flex flex-col items-center justify-center shadow-inner group'>
 									<div className='w-full h-full border border-dashed border-matcha/40 rounded-xl flex items-center justify-center bg-matcha-light/30 relative overflow-hidden'>
-										<QrCode size={100} className='text-matcha/80 group-hover:scale-105 transition-transform' />
+										<QrCode
+											size={100}
+											className='text-matcha/80 group-hover:scale-105 transition-transform'
+										/>
 										<div className='absolute inset-x-0 top-0 h-1 bg-matcha/60 shadow-md animate-pulse' />
 									</div>
 								</div>
@@ -101,24 +124,44 @@ const Download = () => {
 								<Bell size={20} />
 							</div>
 							<div>
-								<h3 className='text-lg font-bold text-charcoal m-0'>Get Notified About App Updates</h3>
-								<p className='text-xs text-warm-gray m-0'>Be the first to get early beta access and platform updates.</p>
+								<h3 className='text-lg font-bold text-charcoal m-0'>
+									Get Notified About App Updates
+								</h3>
+								<p className='text-xs text-warm-gray m-0'>
+									Be the first to get early beta access and
+									platform updates.
+								</p>
 							</div>
 						</div>
 
 						{submitted ? (
 							<div className='p-4 bg-matcha-light rounded-xl text-matcha font-bold text-sm text-center flex items-center justify-center gap-2 mt-4'>
 								<CheckCircle2 size={18} />
-								<span>You're on the VIP notification list!</span>
+								<span>
+									You're on the VIP notification list!
+								</span>
 							</div>
 						) : (
-							<Form form={form} onFinish={handleSubmit} layout='vertical' className='mt-4'>
+							<Form
+								form={form}
+								onFinish={handleSubmit}
+								layout='vertical'
+								className='mt-4'
+							>
 								<div className='flex flex-col sm:flex-row gap-3'>
 									<Form.Item
 										name='email'
 										rules={[
-											{ required: true, message: 'Please enter your email' },
-											{ type: 'email', message: 'Please enter a valid email' }
+											{
+												required: true,
+												message:
+													'Please enter your email'
+											},
+											{
+												type: 'email',
+												message:
+													'Please enter a valid email'
+											}
 										]}
 										className='m-0 flex-1'
 									>

@@ -70,13 +70,21 @@ const About = () => {
 							<span>Our Vision</span>
 						</div>
 						<h1 className='text-4xl sm:text-5xl lg:text-6xl font-extrabold text-charcoal tracking-tight leading-tight mb-6'>
-							Building the Trust Infrastructure for <span className='gradient-text-matcha'>Service Businesses</span>
+							Building the Trust Infrastructure for{' '}
+							<span className='gradient-text-matcha'>
+								Service Businesses
+							</span>
 						</h1>
 						<p className='text-warm-gray text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto font-medium text-charcoal/90 mb-4'>
-							“Great service providers shouldn't lose clients because of poor systems, and clients shouldn't have to gamble on who they book.”
+							“Great service providers shouldn't lose clients
+							because of poor systems, and clients shouldn't have
+							to gamble on who they book.”
 						</p>
 						<p className='text-warm-gray text-base sm:text-lg leading-relaxed max-w-2xl mx-auto'>
-							Most booking platforms stop once an appointment is booked. Matcha continues the relationship before, during, and after every service — making trust measurable and client retention automatic.
+							Most booking platforms stop once an appointment is
+							booked. Matcha continues the relationship before,
+							during, and after every service — making trust
+							measurable and client retention automatic.
 						</p>
 					</div>
 				</Container>
@@ -90,7 +98,8 @@ const About = () => {
 							Our Core Values
 						</h2>
 						<p className='text-warm-gray text-base'>
-							The principles that guide how we build Matcha every day.
+							The principles that guide how we build Matcha every
+							day.
 						</p>
 					</div>
 

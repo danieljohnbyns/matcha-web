@@ -24,8 +24,15 @@ body,
 
 body {
 	margin: 0;
-	font-family: 'Geist Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-		Roboto, 'Helvetica Neue', Arial, sans-serif;
+	font-family:
+		'Geist Variable',
+		-apple-system,
+		BlinkMacSystemFont,
+		'Segoe UI',
+		Roboto,
+		'Helvetica Neue',
+		Arial,
+		sans-serif;
 	color: var(--color-charcoal);
 	background-color: var(--color-warm-white);
 	line-height: 1.7;
@@ -51,7 +58,11 @@ h6 {
 }
 
 .gradient-bg-hero {
-	background: radial-gradient(circle at 50% 0%, rgba(232, 242, 235, 0.8) 0%, rgba(250, 249, 246, 1) 70%);
+	background: radial-gradient(
+		circle at 50% 0%,
+		rgba(232, 242, 235, 0.8) 0%,
+		rgba(250, 249, 246, 1) 70%
+	);
 }
 
 .glass-nav {
@@ -87,7 +98,8 @@ h6 {
 }
 
 @keyframes floatSlow {
-	0%, 100% {
+	0%,
+	100% {
 		transform: translateY(0px) rotate(0deg);
 	}
 	50% {
@@ -96,7 +108,8 @@ h6 {
 }
 
 @keyframes floatReverse {
-	0%, 100% {
+	0%,
+	100% {
 		transform: translateY(0px) rotate(0deg);
 	}
 	50% {
@@ -105,7 +118,8 @@ h6 {
 }
 
 @keyframes pulseGlow {
-	0%, 100% {
+	0%,
+	100% {
 		box-shadow: 0 0 15px rgba(0, 68, 80, 0.2);
 	}
 	50% {
@@ -117,7 +131,8 @@ h6 {
 	0% {
 		transform: translateX(-120%) rotate(25deg);
 	}
-	20%, 100% {
+	20%,
+	100% {
 		transform: translateX(220%) rotate(25deg);
 	}
 }

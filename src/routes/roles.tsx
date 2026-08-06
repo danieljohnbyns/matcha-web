@@ -1,6 +1,12 @@
 import React from 'react';
 import { createFileRoute } from '@tanstack/react-router';
-import { Briefcase, UserCheck, ShieldCheck, CheckCircle2, Sparkles } from 'lucide-react';
+import {
+	Briefcase,
+	UserCheck,
+	ShieldCheck,
+	CheckCircle2,
+	Sparkles
+} from 'lucide-react';
 import { Container } from '#/components';
 
 const rolesList = [
@@ -8,7 +14,8 @@ const rolesList = [
 		title: 'Service Provider',
 		badge: 'For Independent Professionals',
 		icon: <Briefcase className='w-7 h-7 text-matcha' />,
-		description: 'Earn trust, protect your schedule from no-shows, build loyal repeat clients, and grow predictable income.',
+		description:
+			'Earn trust, protect your schedule from no-shows, build loyal repeat clients, and grow predictable income.',
 		features: [
 			'Reliability Overview & 5-Tier Badge System',
 			'Badges: New, Trusted, Reliable, Caution, Restricted',
@@ -21,7 +28,8 @@ const rolesList = [
 		title: 'Client / Customer',
 		badge: 'For Service Seekers',
 		icon: <UserCheck className='w-7 h-7 text-matcha' />,
-		description: 'Discover reliable providers, book with confidence, rebook in seconds, and keep all service history in one place.',
+		description:
+			'Discover reliable providers, book with confidence, rebook in seconds, and keep all service history in one place.',
 		features: [
 			'Reliability Overview & Badge verification',
 			'Safe Smart Deposit appointment booking',
@@ -34,7 +42,8 @@ const rolesList = [
 		title: 'One Account for Everyone',
 		badge: 'Universal Access',
 		icon: <ShieldCheck className='w-7 h-7 text-matcha' />,
-		description: 'A single Matcha account is all you need. Both bookers and providers can use the platform seamlessly with one account.',
+		description:
+			'A single Matcha account is all you need. Both bookers and providers can use the platform seamlessly with one account.',
 		features: [
 			'Unified single account login',
 			'Universal access for both Booker & Provider',
@@ -58,10 +67,14 @@ const Roles = () => {
 					</div>
 
 					<h1 className='text-4xl sm:text-5xl lg:text-6xl font-extrabold text-charcoal tracking-tight leading-tight mb-6'>
-						Designed for Every <span className='gradient-text-matcha'>Side of Service</span>
+						Designed for Every{' '}
+						<span className='gradient-text-matcha'>
+							Side of Service
+						</span>
 					</h1>
 					<p className='text-warm-gray text-lg leading-relaxed'>
-						Matcha connects service providers, clients, and community leads under one secure, unified ecosystem.
+						Matcha connects service providers, clients, and
+						community leads under one secure, unified ecosystem.
 					</p>
 				</div>
 
@@ -87,8 +100,14 @@ const Roles = () => {
 
 								<div className='border-t border-border/40 pt-4 space-y-2.5'>
 									{role.features.map((feature) => (
-										<div key={feature} className='flex items-center gap-2 text-xs font-medium text-charcoal'>
-											<CheckCircle2 size={16} className='text-matcha flex-shrink-0' />
+										<div
+											key={feature}
+											className='flex items-center gap-2 text-xs font-medium text-charcoal'
+										>
+											<CheckCircle2
+												size={16}
+												className='text-matcha flex-shrink-0'
+											/>
 											<span>{feature}</span>
 										</div>
 									))}
