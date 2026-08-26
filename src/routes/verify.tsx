@@ -2,6 +2,20 @@ import { createFileRoute } from '@tanstack/react-router';
 import { Button, Result } from 'antd';
 import { Container } from '#/components';
 
+/**
+ * The scheme declared at the app's `app.json:6`. Verification finishes in a
+ * browser, so without a way back the user is stranded on a web page while the
+ * app sits behind it waiting for exactly this status change -- and its
+ * verify-email screen re-checks the moment it returns to the foreground.
+ */
+const APP_SCHEME = 'com.matchaservice.work://';
+
+const ReturnToApp = () => (
+	<Button type='primary' href={APP_SCHEME}>
+		Return to the Matcha app
+	</Button>
+);
+
 const RouteComponent = () => {
 	return (
 		<section className='py-24 bg-warm-white min-h-[80vh] flex items-center'>
@@ -10,15 +24,7 @@ const RouteComponent = () => {
 					status='success'
 					title='Your email has been verified!'
 					subTitle='Thank you for verifying your email address.'
-					extra={[
-						<Button
-							type='primary'
-							key='app'
-							href='com.matchaservice.work://'
-						>
-							Open the App
-						</Button>
-					]}
+					extra={[<ReturnToApp key='app' />]}
 				/>
 			</Container>
 		</section>
@@ -32,7 +38,8 @@ const ErrorComponent = () => {
 				<Result
 					status='error'
 					title='Verification Failed'
-					subTitle='The verification link is invalid or has expired.'
+					subTitle='The verification link is invalid or has expired. You can send yourself a new one from the app.'
+					extra={[<ReturnToApp key='app' />]}
 				/>
 			</Container>
 		</section>
