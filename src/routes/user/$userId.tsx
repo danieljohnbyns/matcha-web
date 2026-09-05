@@ -5,7 +5,7 @@ import { BadgeCheck, Sparkles } from 'lucide-react';
 import { Container } from '#/components';
 
 const API_BASE = 'https://api.matchaservice.com';
-const SCHEME = 'com.matchaservice.work';
+const WEB_BASE = 'https://matchaservice.com';
 
 interface ProviderPayload {
 	id: string;
@@ -22,7 +22,8 @@ const ProviderLanding = () => {
 
 const ProviderContent = ({ userId }: { userId: string }) => {
 	const provider = Route.useLoaderData();
-	const appLink = `${SCHEME}://user/${userId}`;
+	const webUrl = `${WEB_BASE}/user/${userId}`;
+	const appLink = webUrl;
 
 	return (
 		<section className='relative py-16 md:py-24 gradient-bg-hero min-h-[85vh] flex items-center overflow-hidden'>
@@ -106,13 +107,31 @@ const ErrorComponent = () => {
 };
 
 export const Route = createFileRoute('/user/$userId')({
-	head: () => ({
-		meta: [
-			{
-				title: 'Provider Profile on Matcha'
-			}
-		]
-	}),
+	head: ({ loaderData, params }: { loaderData?: ProviderPayload; params: { userId: string } }) => {
+		const title = loaderData?.fullName
+			? `${loaderData.fullName} (@${loaderData.username}) — Matcha`
+			: 'Provider Profile on Matcha';
+		const description = loaderData
+			? `${loaderData.fullName} offers ${loaderData.activeServices} service${loaderData.activeServices === 1 ? '' : 's'} on Matcha.`
+			: 'Trusted services provider on Matcha.';
+		const image = loaderData?.avatarUrl ?? `${WEB_BASE}/icon.png`;
+		const url = `${WEB_BASE}/user/${params.userId}`;
+		return {
+			meta: [
+				{ title },
+				{ name: 'description', content: description },
+				{ property: 'og:title', content: title },
+				{ property: 'og:description', content: description },
+				{ property: 'og:image', content: image },
+				{ property: 'og:url', content: url },
+				{ property: 'og:type', content: 'profile' },
+				{ name: 'twitter:card', content: 'summary' },
+				{ name: 'twitter:title', content: title },
+				{ name: 'twitter:description', content: description },
+				{ name: 'twitter:image', content: image },
+			],
+		};
+	},
 	loader: async ({ params }) => {
 		const res = await fetch(`${API_BASE}/account/${params.userId}`);
 		if (!res.ok) throw new Error('Provider not found');

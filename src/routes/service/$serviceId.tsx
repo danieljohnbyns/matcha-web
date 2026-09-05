@@ -6,6 +6,7 @@ import { Container } from '#/components';
 
 const API_BASE = 'https://api.matchaservice.com';
 const SCHEME = 'com.matchaservice.work';
+const WEB_BASE = 'https://matchaservice.com';
 
 interface Variant {
 	id: string;
@@ -44,7 +45,10 @@ const ServiceLanding = () => {
 const ServiceContent = ({ serviceId }: { serviceId: string }) => {
 	const service = Route.useLoaderData();
 	const price = service?.variants?.[0]?.price ?? service?.price;
-	const appLink = `${SCHEME}://service/${serviceId}`;
+	// https universal link — opens app if installed (applinks/assetlinks), else stays on this web landing
+	const webUrl = `${WEB_BASE}/service/${serviceId}`;
+	const appLink = webUrl;
+	const schemeLink = `${SCHEME}://service/${serviceId}`;
 
 	const heroImage = service?.photos?.[0] ?? service?.provider?.avatarUrl;
 
@@ -145,7 +149,7 @@ const ServiceContent = ({ serviceId }: { serviceId: string }) => {
 									<div className='flex gap-3'>
 										<Button
 											size='large'
-											href={SCHEME}
+											href={schemeLink}
 											className='!h-12 !rounded-2xl !font-semibold flex-1'
 										>
 											Open App
@@ -241,13 +245,31 @@ const ErrorComponent = () => {
 };
 
 export const Route = createFileRoute('/service/$serviceId')({
-	head: () => ({
-		meta: [
-			{
-				title: 'Book a Service on Matcha'
-			}
-		]
-	}),
+	head: ({ loaderData, params }: { loaderData?: ServicePayload; params: { serviceId: string } }) => {
+		const title = loaderData?.title
+			? `${loaderData.title} — Book on Matcha`
+			: 'Book a Service on Matcha';
+		const description =
+			loaderData?.description?.slice(0, 160) ??
+			'Find & book trusted services on Matcha — tap to open in the app.';
+		const image = loaderData?.photos?.[0] ?? loaderData?.provider?.avatarUrl ?? `${WEB_BASE}/icon.png`;
+		const url = `${WEB_BASE}/service/${params.serviceId}`;
+		return {
+			meta: [
+				{ title },
+				{ name: 'description', content: description },
+				{ property: 'og:title', content: title },
+				{ property: 'og:description', content: description },
+				{ property: 'og:image', content: image },
+				{ property: 'og:url', content: url },
+				{ property: 'og:type', content: 'website' },
+				{ name: 'twitter:card', content: 'summary_large_image' },
+				{ name: 'twitter:title', content: title },
+				{ name: 'twitter:description', content: description },
+				{ name: 'twitter:image', content: image },
+			],
+		};
+	},
 	loader: async ({ params }) => {
 		const res = await fetch(`${API_BASE}/services/${params.serviceId}`);
 		if (!res.ok) throw new Error('Service not found');
