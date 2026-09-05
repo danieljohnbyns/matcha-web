@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from '@tanstack/react-router';
-import { Instagram, Sprout } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 import { Container } from './Container';
 
 export const Footer = (): React.JSX.Element => {
@@ -150,6 +150,14 @@ export const Footer = (): React.JSX.Element => {
 										className='text-warm-gray hover:text-matcha no-underline transition-colors'
 									>
 										Terms &amp; Conditions
+									</Link>
+								</li>
+								<li>
+									<Link
+										to='/data-deletion'
+										className='text-warm-gray hover:text-matcha no-underline transition-colors'
+									>
+										Data Deletion
 									</Link>
 								</li>
 								<li>
