@@ -3,6 +3,7 @@ import { createFileRoute, Link, useParams } from '@tanstack/react-router';
 import { Avatar, Button, Result } from 'antd';
 import { BadgeCheck, Sparkles } from 'lucide-react';
 import { Container } from '#/components';
+import { appLinkProps } from '#/config/appLink';
 
 const API_BASE = 'https://api.matchaservice.com';
 const WEB_BASE = 'https://matchaservice.com';
@@ -22,8 +23,6 @@ const ProviderLanding = () => {
 
 const ProviderContent = ({ userId }: { userId: string }) => {
 	const provider = Route.useLoaderData();
-	const webUrl = `${WEB_BASE}/user/${userId}`;
-	const appLink = webUrl;
 
 	return (
 		<section className='relative py-16 md:py-24 gradient-bg-hero min-h-[85vh] flex items-center overflow-hidden'>
@@ -66,7 +65,7 @@ const ProviderContent = ({ userId }: { userId: string }) => {
 							<Button
 								type='primary'
 								size='large'
-								href={appLink}
+								{...appLinkProps(`user/${userId}`)}
 								className='!bg-matcha hover:!bg-matcha-dark !border-matcha !h-14 !px-8 !rounded-2xl !text-base !font-bold !shadow-md hover:!scale-[1.02] transition-transform'
 							>
 								Open Profile in App
@@ -128,8 +127,8 @@ export const Route = createFileRoute('/user/$userId')({
 				{ name: 'twitter:card', content: 'summary' },
 				{ name: 'twitter:title', content: title },
 				{ name: 'twitter:description', content: description },
-				{ name: 'twitter:image', content: image },
-			],
+				{ name: 'twitter:image', content: image }
+			]
 		};
 	},
 	loader: async ({ params }) => {

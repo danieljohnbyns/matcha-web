@@ -3,6 +3,7 @@ import { createFileRoute, Link, useParams } from '@tanstack/react-router';
 import { Avatar, Button, Result } from 'antd';
 import { CalendarPlus, MapPin, Sparkles } from 'lucide-react';
 import { Container } from '#/components';
+import { appLinkProps } from '#/config/appLink';
 
 const API_BASE = 'https://api.matchaservice.com';
 const SCHEME = 'com.matchaservice.work';
@@ -88,11 +89,8 @@ const ServiceContent = ({
 		: null;
 	const combinedQuery = [variantQuery, utmQuery].filter(Boolean).join('&');
 	const querySuffix = combinedQuery ? `?${combinedQuery}` : '';
-	// https universal link — opens app if installed (applinks/assetlinks), else stays on this web landing.
-	// Preserve variantId + utm_* so the app can pre-select the variant and attribute the booking.
-	const webUrl = `${WEB_BASE}/service/${serviceId}${querySuffix}`;
-	const appLink = webUrl;
-	const schemeLink = `${SCHEME}://service/${serviceId}${querySuffix}`;
+	const appPath = `service/${serviceId}${querySuffix}`;
+	const openService = appLinkProps(appPath);
 
 	const heroImage = service?.photos?.[0] ?? service?.provider?.avatarUrl;
 
@@ -182,7 +180,7 @@ const ServiceContent = ({
 									<Button
 										type='primary'
 										size='large'
-										href={appLink}
+										{...openService}
 										icon={
 											<CalendarPlus
 												className='mr-1'
@@ -196,7 +194,7 @@ const ServiceContent = ({
 									<div className='flex gap-3'>
 										<Button
 											size='large'
-											href={schemeLink}
+											{...openService}
 											className='!h-12 !rounded-2xl !font-semibold flex-1'
 										>
 											Open App
