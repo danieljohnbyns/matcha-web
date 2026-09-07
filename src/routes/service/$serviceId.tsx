@@ -38,17 +38,61 @@ interface ServicePayload {
 
 const ServiceLanding = () => {
 	const { serviceId } = useParams({ from: '/service/$serviceId' });
+	const search = Route.useSearch() as {
+		variantId?: string;
+		utm_source?: string;
+		utm_medium?: string;
+		utm_campaign?: string;
+	};
 
-	return <ServiceContent serviceId={serviceId} />;
+	return <ServiceContent serviceId={serviceId} search={search} />;
 };
 
-const ServiceContent = ({ serviceId }: { serviceId: string }) => {
+const ServiceContent = ({
+	serviceId,
+	search
+}: {
+	serviceId: string;
+	search: {
+		variantId?: string;
+		utm_source?: string;
+		utm_medium?: string;
+		utm_campaign?: string;
+	};
+}) => {
 	const service = Route.useLoaderData();
-	const price = service?.variants?.[0]?.price ?? service?.price;
-	// https universal link — opens app if installed (applinks/assetlinks), else stays on this web landing
-	const webUrl = `${WEB_BASE}/service/${serviceId}`;
+	const selectedVariantId = search.variantId?.trim() || null;
+	const selectedVariant =
+		selectedVariantId && service?.variants
+			? (service.variants.find((v) => v.id === selectedVariantId) ?? null)
+			: null;
+	const price =
+		selectedVariant?.price ??
+		service?.variants?.[0]?.price ??
+		service?.price;
+	const utmQuery = [
+		search.utm_source
+			? `utm_source=${encodeURIComponent(search.utm_source)}`
+			: null,
+		search.utm_medium
+			? `utm_medium=${encodeURIComponent(search.utm_medium)}`
+			: null,
+		search.utm_campaign
+			? `utm_campaign=${encodeURIComponent(search.utm_campaign)}`
+			: null
+	]
+		.filter(Boolean)
+		.join('&');
+	const variantQuery = selectedVariantId
+		? `variantId=${encodeURIComponent(selectedVariantId)}`
+		: null;
+	const combinedQuery = [variantQuery, utmQuery].filter(Boolean).join('&');
+	const querySuffix = combinedQuery ? `?${combinedQuery}` : '';
+	// https universal link — opens app if installed (applinks/assetlinks), else stays on this web landing.
+	// Preserve variantId + utm_* so the app can pre-select the variant and attribute the booking.
+	const webUrl = `${WEB_BASE}/service/${serviceId}${querySuffix}`;
 	const appLink = webUrl;
-	const schemeLink = `${SCHEME}://service/${serviceId}`;
+	const schemeLink = `${SCHEME}://service/${serviceId}${querySuffix}`;
 
 	const heroImage = service?.photos?.[0] ?? service?.provider?.avatarUrl;
 
@@ -96,7 +140,10 @@ const ServiceContent = ({ serviceId }: { serviceId: string }) => {
 									<p className='text-warm-gray text-sm leading-relaxed'>
 										from{' '}
 										<span className='text-charcoal font-bold text-lg'>
-											${Number(price ?? 0).toFixed(2)}
+											₱
+											{Number(
+												price ?? 0
+											).toLocaleString()}
 										</span>
 									</p>
 								</div>
@@ -173,27 +220,50 @@ const ServiceContent = ({ serviceId }: { serviceId: string }) => {
 									Choose a package
 								</h2>
 								<div className='grid sm:grid-cols-2 gap-3'>
-									{service.variants.map((v) => (
-										<div
-											key={v.id}
-											className='border border-border rounded-2xl p-4 flex items-center justify-between'
-										>
-											<div>
-												<div className='font-bold text-charcoal'>
-													{v.name}
-												</div>
-												{v.duration ? (
-													<div className='text-xs text-warm-gray mt-1'>
-														{v.duration} min
+									{service.variants.map((v) => {
+										const isSelected =
+											selectedVariantId === v.id;
+										return (
+											<div
+												key={v.id}
+												className={
+													isSelected
+														? 'border-2 border-matcha bg-matcha-light/30 rounded-2xl p-4 flex items-center justify-between shadow-sm'
+														: 'border border-border rounded-2xl p-4 flex items-center justify-between'
+												}
+											>
+												<div>
+													<div className='font-bold text-charcoal flex items-center gap-2'>
+														{v.name}
+														{isSelected ? (
+															<span className='inline-flex items-center px-2 py-0.5 rounded-full bg-matcha text-white text-[10px] font-bold uppercase tracking-wide'>
+																Selected
+															</span>
+														) : null}
 													</div>
-												) : null}
+													{v.duration ? (
+														<div className='text-xs text-warm-gray mt-1'>
+															{v.duration} min
+														</div>
+													) : null}
+												</div>
+												<div className='font-bold text-matcha'>
+													₱
+													{Number(
+														v.price
+													).toLocaleString()}
+												</div>
 											</div>
-											<div className='font-bold text-matcha'>
-												${Number(v.price).toFixed(2)}
-											</div>
-										</div>
-									))}
+										);
+									})}
 								</div>
+								{selectedVariant ? (
+									<p className='text-xs text-warm-gray mt-3'>
+										Link pre-selected “
+										{selectedVariant.name}” — tap Book Now
+										to open it in the app.
+									</p>
+								) : null}
 							</div>
 						) : null}
 
@@ -245,15 +315,45 @@ const ErrorComponent = () => {
 };
 
 export const Route = createFileRoute('/service/$serviceId')({
-	head: ({ loaderData, params }: { loaderData?: ServicePayload; params: { serviceId: string } }) => {
+	validateSearch: (search: Record<string, unknown>) => ({
+		variantId:
+			typeof search.variantId === 'string'
+				? search.variantId
+				: typeof search.variant_id === 'string'
+					? search.variant_id
+					: undefined,
+		utm_source:
+			typeof search.utm_source === 'string'
+				? search.utm_source
+				: undefined,
+		utm_medium:
+			typeof search.utm_medium === 'string'
+				? search.utm_medium
+				: undefined,
+		utm_campaign:
+			typeof search.utm_campaign === 'string'
+				? search.utm_campaign
+				: undefined
+	}),
+	head: ({
+		loaderData,
+		params
+	}: {
+		loaderData?: ServicePayload;
+		params: { serviceId: string };
+	}) => {
 		const title = loaderData?.title
 			? `${loaderData.title} — Book on Matcha`
 			: 'Book a Service on Matcha';
 		const description =
 			loaderData?.description?.slice(0, 160) ??
 			'Find & book trusted services on Matcha — tap to open in the app.';
-		const image = loaderData?.photos?.[0] ?? loaderData?.provider?.avatarUrl ?? `${WEB_BASE}/icon.png`;
+		const image =
+			loaderData?.photos?.[0] ??
+			loaderData?.provider?.avatarUrl ??
+			`${WEB_BASE}/icon.png`;
 		const url = `${WEB_BASE}/service/${params.serviceId}`;
+		const appUrl = `${SCHEME}://service/${params.serviceId}`;
 		return {
 			meta: [
 				{ title },
@@ -267,7 +367,16 @@ export const Route = createFileRoute('/service/$serviceId')({
 				{ name: 'twitter:title', content: title },
 				{ name: 'twitter:description', content: description },
 				{ name: 'twitter:image', content: image },
-			],
+				// App Links — enables FB/IG in-app browser to offer “Open in App”.
+				// iOS Universal Link is via applinks:matchaservice.com, these are the fallback for scrapers.
+				{ property: 'al:ios:url', content: appUrl },
+				{ property: 'al:ios:app_store_id', content: '6791573435' },
+				{ property: 'al:ios:app_name', content: 'Matcha' },
+				{ property: 'al:android:url', content: appUrl },
+				{ property: 'al:android:package', content: SCHEME },
+				{ property: 'al:android:app_name', content: 'Matcha' },
+				{ property: 'al:web:url', content: url }
+			]
 		};
 	},
 	loader: async ({ params }) => {
