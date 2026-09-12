@@ -10,7 +10,7 @@ const Privacy = () => {
 						Privacy Policy
 					</h1>
 					<p className='text-warm-gray text-base mt-2'>
-						Last Updated: June 15, 2026
+						Last Updated: September 12, 2026
 					</p>
 				</div>
 
@@ -47,8 +47,9 @@ const Privacy = () => {
 							<strong className='text-charcoal'>
 								Account Credentials:
 							</strong>{' '}
-							Name, email address, phone number, and password are
-							created when you register.
+							Name, username, email address, date of birth and
+							password are created when you register. We do not ask for
+							or store a phone number.
 						</li>
 						<li>
 							<strong className='text-charcoal'>
@@ -69,6 +70,38 @@ const Privacy = () => {
 							documentation if required to verify provider
 							accounts.
 						</li>
+						<li>
+							<strong className='text-charcoal'>
+								Payment Instructions You Publish:
+							</strong>{' '}
+							If you are a Provider and you require a deposit, we
+							store the payment instructions you choose to add to
+							your listing &mdash; such as a bank or e-wallet
+							provider, account name, account number, and a payment QR
+							image. You enter these yourself so Clients know where to
+							send a deposit, and they are shown only to a Client with
+							a booking on that service.
+						</li>
+						<li>
+							<strong className='text-charcoal'>
+								Proof of Payment:
+							</strong>{' '}
+							If you are a Client and you upload an image of a deposit
+							receipt, we store that image and the amount you entered,
+							and share them with the Provider on that booking so they
+							can confirm the deposit. A receipt image contains
+							whatever is visible in the screenshot you upload, so
+							please crop out anything you do not want the Provider to
+							see.
+						</li>
+						<li>
+							<strong className='text-charcoal'>
+								Addresses:
+							</strong>{' '}
+							The service and booking addresses you type in, including
+							region, city or municipality, barangay, street and
+							postal code.
+						</li>
 					</ul>
 
 					<h3 className='text-lg font-semibold text-charcoal mt-8 mb-3'>
@@ -79,57 +112,55 @@ const Privacy = () => {
 							<strong className='text-charcoal'>
 								Device and Usage Data:
 							</strong>{' '}
-							IP address, device type, operating system version,
-							unique device identifiers, mobile network
-							information, and app crash logs.
+							IP address, device and operating system type, and the app
+							version, build and update identifier of the copy you are
+							running. Matcha does not include an advertising or
+							analytics SDK, and does not build an advertising profile
+							of you.
+						</li>
+						<li>
+							<strong className='text-charcoal'>
+								Push Notification Token:
+							</strong>{' '}
+							If you allow notifications, we store the push token your
+							device issues so we can send you booking and message
+							alerts. You can turn notifications off at any time in
+							your device settings.
 						</li>
 						<li>
 							<strong className='text-charcoal'>
 								Location Data:
 							</strong>{' '}
-							With your explicit permission, we may collect
-							precise or approximate geolocation data via your
-							mobile device to show nearby service providers or
-							clients. You can enable or disable location services
-							in your device settings at any time.
+							Matcha does not access your GPS and does not collect
+							precise geolocation. Location in the app is only the
+							address you type in yourself when you set up a service,
+							save an address, or book.
 						</li>
 					</ul>
 
 					<h3 className='text-lg font-semibold text-charcoal mt-8 mb-3'>
-						C. Payment Processing and Financial Data
+						C. Payment Information
 					</h3>
 					<p>
-						Matcha does not directly collect, process, or store your
-						financial or payment details (such as credit card
-						numbers, bank account details, or mobile wallet
-						credentials). Payments on the platform are facilitated
-						by the Providers, and are typically handled via the
-						following methods:
+						Matcha does not process payments. There is no checkout in the
+						app, no payment gateway, and no card entry. We never collect,
+						receive or store credit or debit card numbers, CVVs, online
+						banking credentials, e-wallet log-ins or payment processor
+						tokens, and we do not hold funds or act as an escrow agent.
 					</p>
-					<ul className='list-disc pl-6 space-y-2'>
-						<li>
-							<strong className='text-charcoal'>
-								Digital and Card Payments:
-							</strong>{' '}
-							Credit card, debit card, and local mobile wallet
-							transactions (such as GCash) are processed entirely
-							by secure, independent, third-party payment
-							gateways. These processors handle your data in
-							accordance with their own privacy policies and
-							PCI-DSS compliance standards. Matcha only receives
-							non-sensitive transaction confirmations (such as
-							reference IDs, status, and transaction amounts) to
-							verify bookings.
-						</li>
-						<li>
-							<strong className='text-charcoal'>
-								Cash Payments:
-							</strong>{' '}
-							For transactions settled directly in cash between
-							Clients and Providers, no financial data is
-							transmitted or captured by the Service.
-						</li>
-					</ul>
+					<p>
+						Payment for a booking is arranged and settled directly between
+						the Client and the Provider, outside the Service. The only
+						payment-related information we hold is what a user types or
+						uploads themselves: the payment instructions a Provider
+						publishes on a listing, and the deposit receipt image and
+						amount a Client uploads. Both are described in section A above.
+					</p>
+					<p>
+						Cash Payments: For bookings settled in cash between Clients and
+						Providers, nothing is captured by the Service unless a user
+						chooses to upload a receipt image.
+					</p>
 
 					<h2 className='text-2xl font-bold text-charcoal mt-12 mb-4'>
 						2. How We Use Your Information
@@ -148,8 +179,8 @@ const Privacy = () => {
 							on location preferences.
 						</li>
 						<li>
-							Process transactions, manage bookings, and send
-							automated confirmations.
+							Manage bookings, record deposit confirmations between
+							users, and send automated booking notifications.
 						</li>
 						<li>
 							Provide customer support and resolve user-to-user
@@ -178,20 +209,25 @@ const Privacy = () => {
 								Between Users:
 							</strong>{' '}
 							To make the marketplace function, a provider&rsquo;s
-							business profile is visible to all users. When a
-							booking is confirmed, limited contact details (like
-							a phone number or name) are shared between the
-							client and provider to facilitate the service.
+							business profile is visible to all users. When a booking
+							is confirmed, the details needed to carry it out &mdash;
+							such as name, the booking address, and any deposit
+							instructions or receipt &mdash; are shared between the
+							client and the provider.
 						</li>
 						<li>
 							<strong className='text-charcoal'>
-								Service Providers/SDKs:
+								Service Providers:
 							</strong>{' '}
-							We share data with trusted third-party vendors who
-							perform services for us, such as analytics tools
-							(e.g., Google Analytics for Firebase), database
-							hosting, and payment gateways. These parties are
-							contractually obligated to protect your data.
+							We share data with the vendors that run the Service for
+							us: Supabase (database, authentication, file storage and
+							realtime messaging), Expo (app distribution, over-the-air
+							updates and push delivery), Google or Apple sign-in if you
+							use them, Google Calendar if you connect it, and our email
+							delivery provider. We do not use an analytics or
+							advertising vendor, and we do not use a payment processor.
+							These parties are contractually obligated to protect your
+							data.
 						</li>
 						<li>
 							<strong className='text-charcoal'>
@@ -223,8 +259,8 @@ const Privacy = () => {
 							<strong className='text-charcoal'>
 								Revoke Permissions:
 							</strong>{' '}
-							You can withdraw consent for location tracking or
-							push notifications at any time via your mobile
+							You can withdraw consent for push notifications, photo
+							library access, or the camera at any time via your mobile
 							device settings.
 						</li>
 						<li>
