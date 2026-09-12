@@ -10,7 +10,7 @@ const Terms = () => {
 						Terms and Conditions
 					</h1>
 					<p className='text-warm-gray text-base mt-2'>
-						Last Updated: June 15, 2026
+						Last Updated: September 12, 2026
 					</p>
 				</div>
 
@@ -91,9 +91,9 @@ const Terms = () => {
 							platform.
 						</li>
 						<li>
-							Using the platform to bypass Matcha&rsquo;s payment
-							or booking systems if a transaction originated on
-							the platform.
+							Arranging a booking through Matcha and then moving
+							it off the platform to avoid its booking records,
+							reviews, or reliability tracking.
 						</li>
 						<li>
 							Scraping, hacking, or attempting to compromise the
@@ -102,37 +102,65 @@ const Terms = () => {
 					</ul>
 
 					<h2 className='text-2xl font-bold text-charcoal mt-12 mb-4'>
-						4. Fees, Payments, and Cancellations
+						4. Payments, Deposits, and Cancellations
 					</h2>
 					<ul className='list-disc pl-6 space-y-2'>
 						<li>
 							<strong className='text-charcoal'>
-								Platform Fees:
+								No Platform Fees:
 							</strong>{' '}
-							Matcha may charge fees to Providers and/or Clients
-							for facilitating bookings. Any applicable fees will
-							be clearly disclosed prior to booking.
+							Matcha is currently free to use. We do not charge
+							Providers or Clients any fee, commission, or
+							subscription for bookings made through the Service. If
+							we introduce fees in the future, they will be clearly
+							disclosed before they apply.
 						</li>
 						<li>
 							<strong className='text-charcoal'>
-								Payment Processing:
+								Payments Are Between You and the Other User:
 							</strong>{' '}
-							Payment processing services on Matcha are provided
-							by third-party payment gateways. By using these
-							services, you agree to abide by their respective
-							terms of service.
+							Matcha does not process payments. We do not operate a
+							checkout, use a payment gateway, store card details,
+							hold funds, act as an escrow agent, or act as merchant
+							of record. Payment for a booking is arranged and
+							settled directly between the Client and the Provider,
+							outside the Service, by whatever method the two of you
+							agree on.
+						</li>
+						<li>
+							<strong className='text-charcoal'>
+								Deposits and Proof of Payment:
+							</strong>{' '}
+							A Provider may require a deposit to confirm a booking,
+							and may publish their own payment instructions (for
+							example a bank or e-wallet account name and number, or
+							a QR code) on their listing. The Client sends that
+							deposit directly to the Provider and may upload an
+							image of the receipt so the Provider can confirm it.
+							Matcha stores those instructions and that image only as
+							a record of what the two of you agreed. It never moves
+							money and cannot confirm that a payment actually
+							cleared.
+						</li>
+						<li>
+							<strong className='text-charcoal'>
+								Real-World Services Only:
+							</strong>{' '}
+							Everything booked through Matcha is a real-world
+							service performed off the app. Matcha does not sell
+							digital content, subscriptions, in-app purchases, or
+							any other digital goods.
 						</li>
 						<li>
 							<strong className='text-charcoal'>
 								Disputes and Refunds:
 							</strong>{' '}
-							Because transactions are strictly between Clients
-							and Providers, refunds and cancellations are
-							governed by the individual Provider&rsquo;s
-							cancellation policy, subject to Matcha&rsquo;s
-							platform-wide dispute guidelines. Matcha reserves
-							the right, but has no obligation, to mediate
-							disputes.
+							Because transactions are strictly between Clients and
+							Providers, refunds and cancellations are governed by
+							the individual Provider&rsquo;s cancellation policy.
+							Matcha cannot reverse, refund, or recover a payment it
+							never handled. Matcha reserves the right, but has no
+							obligation, to mediate disputes.
 						</li>
 					</ul>
 

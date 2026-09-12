@@ -210,8 +210,10 @@ const DataDeletion = () => {
 						6. Third-Party Service Providers
 					</h2>
 					<p>
-						Matcha may use third-party service providers to host, secure, analyze, verify,
-						communicate with users, process payments, or otherwise provide the Matcha service.
+						Matcha may use third-party service providers to host, secure, verify, communicate
+						with users, or otherwise provide the Matcha service. Matcha does not use a payment
+						processor, because payment for a booking is arranged and settled directly between
+						the two users, outside Matcha.
 					</p>
 					<p>
 						Where applicable, when an account is deleted, Matcha will delete or request deletion of
@@ -219,10 +221,11 @@ const DataDeletion = () => {
 						information they are legally required or permitted to retain.
 					</p>
 					<p>
-						Payment providers may independently retain transaction records where required by law,
-						their contractual obligations, or applicable financial regulations. Matcha does not store
-						complete payment-card credentials when payment processing is performed by a third-party
-						payment provider.
+						Matcha never receives or stores card numbers, online banking credentials or payment
+						processor tokens. The payment information Matcha does hold is what users enter
+						themselves — a provider&rsquo;s published deposit instructions, and a booker&rsquo;s
+						uploaded receipt image — and that is deleted or anonymized with the rest of the
+						account.
 					</p>
 
 					<h2 className='text-2xl font-bold text-charcoal mt-12 mb-4'>7. Timing</h2>

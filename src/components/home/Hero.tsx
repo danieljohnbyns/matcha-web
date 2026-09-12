@@ -47,7 +47,7 @@ export const Hero = (): React.JSX.Element => {
 						<p className='text-warm-gray text-sm sm:text-lg lg:text-xl leading-relaxed mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0 font-medium px-1 sm:px-0'>
 							Matcha makes service provider reliability visible
 							and repeat bookings automatic — connecting bookers
-							and providers through protected deposits and smart
+							and providers through confirmed deposits and smart
 							reminders.
 						</p>
 
