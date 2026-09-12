@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import { Container } from '#/components';
 
 const Privacy = () => {
@@ -254,11 +254,27 @@ const Privacy = () => {
 							Delete Account.
 						</li>
 						<li>
-							Upon receiving a deletion request, we permanently
-							erase or anonymize your personal data from our
-							active databases within 30 days, except where
+							<strong className='text-charcoal'>Timing:</strong>{' '}
+							Deletion is immediate. When you confirm in the app
+							we erase or anonymize your personal data in our
+							active databases straight away — there is no waiting
+							period and no cancellation window — except where
 							retention is legally mandated (such as tax or
-							financial transaction history).
+							financial transaction history). Copies may persist
+							briefly in encrypted backups.
+						</li>
+						<li>
+							<strong className='text-charcoal'>Lost access:</strong>{' '}
+							If you cannot sign in, see our{' '}
+							<Link
+								to='/data-deletion'
+								className='text-matcha hover:text-matcha-dark font-semibold'
+							>
+								Data Deletion
+							</Link>{' '}
+							page. We cannot delete an account from the website;
+							support will help you regain access so you can
+							complete the deletion in the app.
 						</li>
 					</ul>
 

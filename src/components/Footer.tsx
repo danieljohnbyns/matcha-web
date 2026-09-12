@@ -160,14 +160,6 @@ export const Footer = (): React.JSX.Element => {
 										Data Deletion
 									</Link>
 								</li>
-								<li>
-									<Link
-										to='/delete-request'
-										className='text-warm-gray hover:text-matcha no-underline transition-colors'
-									>
-										Delete Account
-									</Link>
-								</li>
 							</ul>
 						</div>
 					</div>
