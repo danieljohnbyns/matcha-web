@@ -9,63 +9,24 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as VerifyRouteImport } from './routes/verify'
-import { Route as TermsRouteImport } from './routes/terms'
-import { Route as RolesRouteImport } from './routes/roles'
-import { Route as PrivacyRouteImport } from './routes/privacy'
-import { Route as InviteRouteImport } from './routes/invite'
-import { Route as FeedbackRouteImport } from './routes/feedback'
-import { Route as DownloadRouteImport } from './routes/download'
-import { Route as DeleteRequestRouteImport } from './routes/delete-request'
-import { Route as DataDeletionRouteImport } from './routes/data-deletion'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as UserUserIdRouteImport } from './routes/user/$userId'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as DataDeletionRouteImport } from './routes/data-deletion'
+import { Route as DeleteRequestRouteImport } from './routes/delete-request'
+import { Route as DownloadRouteImport } from './routes/download'
+import { Route as FeedbackRouteImport } from './routes/feedback'
+import { Route as InviteRouteImport } from './routes/invite'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as RolesRouteImport } from './routes/roles'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as VerifyRouteImport } from './routes/verify'
 import { Route as ServiceServiceIdRouteImport } from './routes/service/$serviceId'
+import { Route as UserUserIdRouteImport } from './routes/user/$userId'
+import { Route as ServiceServiceSlugUsernameRouteImport } from './routes/service/$serviceSlug/$username'
 
-const VerifyRoute = VerifyRouteImport.update({
-  id: '/verify',
-  path: '/verify',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TermsRoute = TermsRouteImport.update({
-  id: '/terms',
-  path: '/terms',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RolesRoute = RolesRouteImport.update({
-  id: '/roles',
-  path: '/roles',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PrivacyRoute = PrivacyRouteImport.update({
-  id: '/privacy',
-  path: '/privacy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InviteRoute = InviteRouteImport.update({
-  id: '/invite',
-  path: '/invite',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FeedbackRoute = FeedbackRouteImport.update({
-  id: '/feedback',
-  path: '/feedback',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DownloadRoute = DownloadRouteImport.update({
-  id: '/download',
-  path: '/download',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DeleteRequestRoute = DeleteRequestRouteImport.update({
-  id: '/delete-request',
-  path: '/delete-request',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DataDeletionRoute = DataDeletionRouteImport.update({
-  id: '/data-deletion',
-  path: '/data-deletion',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -73,14 +34,49 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const DataDeletionRoute = DataDeletionRouteImport.update({
+  id: '/data-deletion',
+  path: '/data-deletion',
   getParentRoute: () => rootRouteImport,
 } as any)
-const UserUserIdRoute = UserUserIdRouteImport.update({
-  id: '/user/$userId',
-  path: '/user/$userId',
+const DeleteRequestRoute = DeleteRequestRouteImport.update({
+  id: '/delete-request',
+  path: '/delete-request',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DownloadRoute = DownloadRouteImport.update({
+  id: '/download',
+  path: '/download',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeedbackRoute = FeedbackRouteImport.update({
+  id: '/feedback',
+  path: '/feedback',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InviteRoute = InviteRouteImport.update({
+  id: '/invite',
+  path: '/invite',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RolesRoute = RolesRouteImport.update({
+  id: '/roles',
+  path: '/roles',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VerifyRoute = VerifyRouteImport.update({
+  id: '/verify',
+  path: '/verify',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServiceServiceIdRoute = ServiceServiceIdRouteImport.update({
@@ -88,6 +84,17 @@ const ServiceServiceIdRoute = ServiceServiceIdRouteImport.update({
   path: '/service/$serviceId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UserUserIdRoute = UserUserIdRouteImport.update({
+  id: '/user/$userId',
+  path: '/user/$userId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServiceServiceSlugUsernameRoute =
+  ServiceServiceSlugUsernameRouteImport.update({
+    id: '/service/$serviceSlug/$username',
+    path: '/service/$serviceSlug/$username',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -103,6 +110,7 @@ export interface FileRoutesByFullPath {
   '/verify': typeof VerifyRoute
   '/service/$serviceId': typeof ServiceServiceIdRoute
   '/user/$userId': typeof UserUserIdRoute
+  '/service/$serviceSlug/$username': typeof ServiceServiceSlugUsernameRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -118,6 +126,7 @@ export interface FileRoutesByTo {
   '/verify': typeof VerifyRoute
   '/service/$serviceId': typeof ServiceServiceIdRoute
   '/user/$userId': typeof UserUserIdRoute
+  '/service/$serviceSlug/$username': typeof ServiceServiceSlugUsernameRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -134,6 +143,7 @@ export interface FileRoutesById {
   '/verify': typeof VerifyRoute
   '/service/$serviceId': typeof ServiceServiceIdRoute
   '/user/$userId': typeof UserUserIdRoute
+  '/service/$serviceSlug/$username': typeof ServiceServiceSlugUsernameRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -151,6 +161,7 @@ export interface FileRouteTypes {
     | '/verify'
     | '/service/$serviceId'
     | '/user/$userId'
+    | '/service/$serviceSlug/$username'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -166,6 +177,7 @@ export interface FileRouteTypes {
     | '/verify'
     | '/service/$serviceId'
     | '/user/$userId'
+    | '/service/$serviceSlug/$username'
   id:
     | '__root__'
     | '/'
@@ -181,6 +193,7 @@ export interface FileRouteTypes {
     | '/verify'
     | '/service/$serviceId'
     | '/user/$userId'
+    | '/service/$serviceSlug/$username'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -197,71 +210,16 @@ export interface RootRouteChildren {
   VerifyRoute: typeof VerifyRoute
   ServiceServiceIdRoute: typeof ServiceServiceIdRoute
   UserUserIdRoute: typeof UserUserIdRoute
+  ServiceServiceSlugUsernameRoute: typeof ServiceServiceSlugUsernameRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/verify': {
-      id: '/verify'
-      path: '/verify'
-      fullPath: '/verify'
-      preLoaderRoute: typeof VerifyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/terms': {
-      id: '/terms'
-      path: '/terms'
-      fullPath: '/terms'
-      preLoaderRoute: typeof TermsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/roles': {
-      id: '/roles'
-      path: '/roles'
-      fullPath: '/roles'
-      preLoaderRoute: typeof RolesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/privacy': {
-      id: '/privacy'
-      path: '/privacy'
-      fullPath: '/privacy'
-      preLoaderRoute: typeof PrivacyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/invite': {
-      id: '/invite'
-      path: '/invite'
-      fullPath: '/invite'
-      preLoaderRoute: typeof InviteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/feedback': {
-      id: '/feedback'
-      path: '/feedback'
-      fullPath: '/feedback'
-      preLoaderRoute: typeof FeedbackRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/download': {
-      id: '/download'
-      path: '/download'
-      fullPath: '/download'
-      preLoaderRoute: typeof DownloadRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/delete-request': {
-      id: '/delete-request'
-      path: '/delete-request'
-      fullPath: '/delete-request'
-      preLoaderRoute: typeof DeleteRequestRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/data-deletion': {
-      id: '/data-deletion'
-      path: '/data-deletion'
-      fullPath: '/data-deletion'
-      preLoaderRoute: typeof DataDeletionRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -271,11 +229,74 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/data-deletion': {
+      id: '/data-deletion'
+      path: '/data-deletion'
+      fullPath: '/data-deletion'
+      preLoaderRoute: typeof DataDeletionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/delete-request': {
+      id: '/delete-request'
+      path: '/delete-request'
+      fullPath: '/delete-request'
+      preLoaderRoute: typeof DeleteRequestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/download': {
+      id: '/download'
+      path: '/download'
+      fullPath: '/download'
+      preLoaderRoute: typeof DownloadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feedback': {
+      id: '/feedback'
+      path: '/feedback'
+      fullPath: '/feedback'
+      preLoaderRoute: typeof FeedbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/invite': {
+      id: '/invite'
+      path: '/invite'
+      fullPath: '/invite'
+      preLoaderRoute: typeof InviteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/roles': {
+      id: '/roles'
+      path: '/roles'
+      fullPath: '/roles'
+      preLoaderRoute: typeof RolesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/verify': {
+      id: '/verify'
+      path: '/verify'
+      fullPath: '/verify'
+      preLoaderRoute: typeof VerifyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/service/$serviceId': {
+      id: '/service/$serviceId'
+      path: '/service/$serviceId'
+      fullPath: '/service/$serviceId'
+      preLoaderRoute: typeof ServiceServiceIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/user/$userId': {
@@ -285,11 +306,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserUserIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/service/$serviceId': {
-      id: '/service/$serviceId'
-      path: '/service/$serviceId'
-      fullPath: '/service/$serviceId'
-      preLoaderRoute: typeof ServiceServiceIdRouteImport
+    '/service/$serviceSlug/$username': {
+      id: '/service/$serviceSlug/$username'
+      path: '/service/$serviceSlug/$username'
+      fullPath: '/service/$serviceSlug/$username'
+      preLoaderRoute: typeof ServiceServiceSlugUsernameRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -309,16 +330,8 @@ const rootRouteChildren: RootRouteChildren = {
   VerifyRoute: VerifyRoute,
   ServiceServiceIdRoute: ServiceServiceIdRoute,
   UserUserIdRoute: UserUserIdRoute,
+  ServiceServiceSlugUsernameRoute: ServiceServiceSlugUsernameRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}
